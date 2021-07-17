@@ -405,77 +405,9 @@ namespace quality
 
         private void calculate_Click(object sender, EventArgs e)
         {
-            try
+            using (Calculate formCalculate = new Calculate(_conn))
             {
-                int coin = dataGridView_base.SelectedRows.Count;
-                MessageBox.Show(Convert.ToString(coin));
-
-                List<int> idCalculate = new List<int>(); // id
-                List<double> with = new List<double>(); // ширина
-                List<double> height = new List<double>(); // высота
-                List<double> long1 = new List<double>(); // длина
-                List<double> breakingLoad_kH = new List<double>(); // разрушающая нагрузка
-                List<int> drySampleWeight_gram = new List<int>(); // Сухой
-                List<int> sampleWetWeight_gram = new List<int>(); // Влажный
-                List<string> id_party = new List<string>();
-                List<int> id_density = new List<int>();
-
-                int c = 0;
-                bool check = false;
-
-                for (int i = 0; i < coin; i++)
-                {
-                    if (Convert.ToInt32(dataGridView_base.SelectedRows[i].Cells[16].Value) == 0)
-                    {
-                        c++;
-                    }
-                    else
-                    {
-                        Message message = new Message();
-                        message.InputError("Ошибка в одном из выбранных элементов уже был расчёт");
-                    }
-                }
-
-                if (c == coin)
-                {
-                    check = true;
-                }
-
-                if (check == true)
-                {
-                    for (int i = 0; i < coin; i++)
-                    {
-                        idCalculate.Add(Convert.ToInt32(dataGridView_base.SelectedRows[i].Cells[0].Value));
-                        with.Add(Convert.ToDouble(dataGridView_base.SelectedRows[i].Cells[11].Value));
-                        height.Add(Convert.ToDouble(dataGridView_base.SelectedRows[i].Cells[12].Value));
-                        long1.Add(Convert.ToDouble(dataGridView_base.SelectedRows[i].Cells[10].Value));
-                        breakingLoad_kH.Add(Convert.ToDouble(dataGridView_base.SelectedRows[i].Cells[13].Value));
-                        drySampleWeight_gram.Add(Convert.ToInt32(dataGridView_base.SelectedRows[i].Cells[8].Value));
-                        sampleWetWeight_gram.Add(Convert.ToInt32(dataGridView_base.SelectedRows[i].Cells[9].Value));
-                        id_party.Add(Convert.ToString(dataGridView_base.SelectedRows[i].Cells[14].Value));
-                        id_density.Add(Convert.ToInt32(dataGridView_base.SelectedRows[i].Cells[3].Value));
-
-                    }
-
-                    Calculater calculater = new Calculater();
-                    float strengthActual = calculater.StrangthActual(breakingLoad_kH, long1, with);
-                    float densityActual = calculater.DensityActual(drySampleWeight_gram, long1, with, height);
-                    float humidityActual = calculater.HumidityActual(drySampleWeight_gram, sampleWetWeight_gram);
-                    
-                    MessageBox.Show(Convert.ToString(strengthActual));
-                    MessageBox.Show(Convert.ToString(densityActual));
-                    MessageBox.Show(Convert.ToString(humidityActual));
-                    for (int i = 0; i < id_density.Count(); i++)
-                    {
-                        MessageBox.Show(id_party[i]);
-                        MessageBox.Show(Convert.ToString(id_density[i]));
-                    }
-
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Ошибка расчёта" + ex);
+                formCalculate.ShowDialog();
             }
         }
     }
