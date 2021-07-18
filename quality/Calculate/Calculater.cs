@@ -1,41 +1,65 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Windows.Forms;
 
 namespace quality
 {
     class Calculater
     {
-        public float StrangthActual(List<double> breakingLoad_kH, List<double> long1, List<double> with)
+        public string StrangthActual(List<float> breakingLoad_kH, List<float> long1, List<float> with)
         {
             float sum = 0;
             for (int i = 0; i < breakingLoad_kH.Count(); i++)
             {
-                sum += ((float)((float)(breakingLoad_kH[i] * 0.95 / (long1[i] * with[i])) * 0.8 * 100));
+                sum += breakingLoad_kH[i] * 0.95f / (long1[i] * with[i]) * 0.8f * 100;
             }
-            return sum;
+            StringBuilder strB = new StringBuilder(Convert.ToString(sum));
+            for(int i = 0; i < strB.Length; i++)
+            {
+                if(strB[i] == ',')
+                {
+                    strB[i] = '.';
+                }
+            }
+            return strB.ToString();
         }
 
-        public float DensityActual(List<int> drySampleWeight_gram, List<double> long1, List<double> with, List<double> height)
+        public string DensityActual(List<int> drySampleWeight_gram, List<float> long1, List<float> with, List<float> height)
         {
             float sum = 0;
-            float ig;
             for (int i = 0; i < drySampleWeight_gram.Count(); i ++)
             {
-                float.TryParse(Convert.ToString(drySampleWeight_gram[i]), out ig);
-                sum += (float)(ig / (long1[i] * with[i] * height[i]));
+                sum += (drySampleWeight_gram[i] / (long1[i] * with[i] * height[i]));
             }
-            return sum;
+            StringBuilder strB = new StringBuilder(Convert.ToString(sum));
+            for (int i = 0; i < strB.Length; i++)
+            {
+                if (strB[i] == ',')
+                {
+                    strB[i] = '.';
+                }
+            }
+            return strB.ToString();
         }
 
-        public float HumidityActual(List<int> drySampleWeight_gram, List<int> sampleWetWeight_gram)
+        public string HumidityActual(List<int> drySampleWeight_gram, List<int> sampleWetWeight_gram)
         {
             float sum = 0;
             for(int i = 0; i < drySampleWeight_gram.Count(); i++)
             {
-                sum += (float)(sampleWetWeight_gram[i] - drySampleWeight_gram[i]) / drySampleWeight_gram[i] / 100;
+                sum += (sampleWetWeight_gram[i] - drySampleWeight_gram[i]) / drySampleWeight_gram[i] / 100;
             }
-            return sum;
+            StringBuilder strB = new StringBuilder(Convert.ToString(sum));
+            for (int i = 0; i < strB.Length; i++)
+            {
+                if (strB[i] == ',')
+                {
+                    strB[i] = '.';
+                }
+            }
+            return strB.ToString();
         }
     }
 }
