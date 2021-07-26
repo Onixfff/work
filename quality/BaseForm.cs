@@ -405,9 +405,9 @@ namespace quality
 
         private void calculate_Click(object sender, EventArgs e)
         {
-            using (Calculate formCalculate = new Calculate(_conn))
+            using (Calculat form = new Calculat(_conn))
             {
-                formCalculate.ShowDialog();
+                form.ShowDialog();
             }
         }
     }

@@ -1,7 +1,7 @@
 ﻿
 namespace quality
 {
-    partial class Calculate
+    partial class Calculat
     {
         /// <summary>
         /// Required designer variable.

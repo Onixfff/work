@@ -1,28 +1,19 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace quality
 {
     public partial class ResultBlocks : Form
     {
-        MySqlConnection mCon;
         private string _conn, _table = "result_block", _dataBase = "mmm";
         List<string> rename = new List<string>();
         List<string> namesVisibl = new List<string>() { "id" };
         public ResultBlocks(string conn)
         {
             this._conn = conn;
-
-            mCon = new MySqlConnection(conn);
-
             InitializeComponent();
             Renewal();
         }
@@ -60,25 +51,39 @@ namespace quality
             this.WindowState = FormWindowState.Maximized;
         }
 
-        private void dataGridView_ResultBlock_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dataGridView_ResultBlock_DoubleClick(object sender, EventArgs e)
         {
-
+            string id = dataGridView_ResultBlock.SelectedRows[0].Cells["id_party"].Value.ToString();
+            ResultBlockBonus form = new ResultBlockBonus(_conn, id);
+            form.ShowDialog();
         }
 
         private void Renewal()
         {
-            mCon.Open();
-            string sql = ("select * from " + _dataBase + ".`" + _table + "`");
-            MySqlDataAdapter dD = new MySqlDataAdapter(sql, mCon);
-            DataSet ds = new DataSet();
-            ds.Reset();
-            dD.Fill(ds, sql);
-            dataGridView_ResultBlock.DataSource = ds.Tables[0];
-            
-            AddList();
-            RenameAndVisibl(ds);
+            using (MySqlConnection mCon = new MySqlConnection(_conn))
+            {
+                try
+                {
+                    mCon.Open();
+                    string sql = ("select * from " + _dataBase + ".`" + _table + "`");
+                    MySqlDataAdapter dD = new MySqlDataAdapter(sql, mCon);
+                    DataSet ds = new DataSet();
+                    ds.Reset();
+                    dD.Fill(ds, sql);
+                    dataGridView_ResultBlock.DataSource = ds.Tables[0];
 
-            mCon.Close();
+                    AddList();
+                    RenameAndVisibl(ds);
+                }
+                catch(MySqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    mCon.Close();
+                }
+            }
         }
 
         private void dataGridView_density_DoubleClick_1(object sender, EventArgs e)

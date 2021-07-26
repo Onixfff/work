@@ -1,25 +1,21 @@
 ﻿using MySql.Data.MySqlClient;
+using quality.Calculate;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Configuration;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data.SqlClient;
 
 
 namespace quality
 {
-    public partial class Calculate : Form
+    public partial class Calculat : Form
     {
         private string _conn;
         private int[] _idForms = new int[2];
         private string _idParty;
-        public Calculate(string conn)
+        private string _comment;
+        public Calculat(string conn)
         {
             _conn = conn;
             InitializeComponent();
@@ -146,102 +142,112 @@ namespace quality
             bool check = false; // Проверка ошибок и заполнений
             if (comboBox1.Text.Trim() != string.Empty)
             {
-                if (textBox_brand.Text.Trim() != string.Empty)
-                {
-                    if (textBox_class.Text.Trim() != string.Empty)
-                    {
-                        List<float> with = new List<float>(); // ширина
-                        List<float> height = new List<float>(); // высота
-                        List<float> long1 = new List<float>(); // длина
-                        List<float> breakingLoad_kH = new List<float>(); // разрушающая нагрузка
-                        List<int> drySampleWeight_gram = new List<int>(); // Сухой
-                        List<int> sampleWetWeight_gram = new List<int>(); // Влажный
-                        List<int> id_density = new List<int>();
+                List<float> with = new List<float>(); // ширина
+                List<float> height = new List<float>(); // высота
+                List<float> long1 = new List<float>(); // длина
+                List<float> breakingLoad_kH = new List<float>(); // разрушающая нагрузка
+                List<int> drySampleWeight_gram = new List<int>(); // Сухой
+                List<int> sampleWetWeight_gram = new List<int>(); // Влажный
+                List<int> id_density = new List<int>();
 
-                        string strengthActual = "";
-                        string densityActual = "";
-                        string humidityActual = "";
-                        _idParty = null;
+                string strengthActual = "";
+                string densityActual = "";
+                string humidityActual = "";
+                _idParty = null;
+                try
+                {
+                    int coin = dataGridView_Calculat.SelectedRows.Count;
+                    for (int i = 0; i < coin; i++)
+                    {
+                        with.Add(float.Parse(dataGridView_Calculat.SelectedRows[i].Cells[4].Value.ToString()));
+                        height.Add(float.Parse(dataGridView_Calculat.SelectedRows[i].Cells[5].Value.ToString()));
+                        long1.Add(float.Parse(dataGridView_Calculat.SelectedRows[i].Cells[3].Value.ToString()));
+                        breakingLoad_kH.Add(float.Parse(dataGridView_Calculat.SelectedRows[i].Cells[2].Value.ToString()));
+                        drySampleWeight_gram.Add(Convert.ToInt32(dataGridView_Calculat.SelectedRows[i].Cells[0].Value));
+                        sampleWetWeight_gram.Add(Convert.ToInt32(dataGridView_Calculat.SelectedRows[i].Cells[1].Value));
+                        id_density.Add(Convert.ToInt32(dataGridView_Calculat.SelectedRows[i].Cells[6].Value));
+                        _idParty += $"{dataGridView_Calculat.SelectedRows[i].Cells[7].Value} ";
+                    }
+
+                    Calculater calculater = new Calculater();
+                    strengthActual = calculater.StrangthActual(breakingLoad_kH, long1, with);
+                    densityActual = calculater.DensityActual(drySampleWeight_gram, long1, with, height);
+                    humidityActual = calculater.HumidityActual(drySampleWeight_gram, sampleWetWeight_gram);
+
+                    int checkId = 0;
+                    for (int i = 0; i < id_density.Count(); i++)
+                    {
+                        checkId = id_density[0];
+                        if (checkId == id_density[i])
+                        {
+                            checkId = id_density[i];
+                            check = true;
+                        }
+                        else
+                        {
+                            MessageBox.Show($"{Convert.ToString(checkId)} != {Convert.ToString(id_density[i])}\nОшибка в idDensiti");
+                            check = false;
+                            break;
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Ошибка расчёта" + ex);
+                }
+                if (check != false)
+                {
+                    object[] dataArray = new object[4];
+                    dataArray[0] = _idParty;
+                    dataArray[1] = densityActual;
+                    dataArray[2] = strengthActual;
+                    dataArray[3] = humidityActual;
+
+                    DataConfirmation formConfirmation = new DataConfirmation(dataArray, _conn);
+
+                    if (formConfirmation.ShowDialog() == DialogResult.OK)
+                    {
+                        //HACK _idForms должна брать id а берёт текст.
+                        _idForms[1] = formConfirmation.idForms[1];
+                        _idForms[0] = formConfirmation.idForms[0];
+                        _comment = formConfirmation.richTextBox1.Text;
+
                         try
                         {
-                            int coin = dataGridView_Calculat.SelectedRows.Count;
-                            for (int i = 0; i < coin; i++)
+                            using (MySqlConnection mCon = new MySqlConnection(_conn))
                             {
-                                with.Add(float.Parse(dataGridView_Calculat.SelectedRows[i].Cells[4].Value.ToString()));
-                                height.Add(float.Parse(dataGridView_Calculat.SelectedRows[i].Cells[5].Value.ToString()));
-                                long1.Add(float.Parse(dataGridView_Calculat.SelectedRows[i].Cells[3].Value.ToString()));
-                                breakingLoad_kH.Add(float.Parse(dataGridView_Calculat.SelectedRows[i].Cells[2].Value.ToString()));
-                                drySampleWeight_gram.Add(Convert.ToInt32(dataGridView_Calculat.SelectedRows[i].Cells[0].Value));
-                                sampleWetWeight_gram.Add(Convert.ToInt32(dataGridView_Calculat.SelectedRows[i].Cells[1].Value));
-                                id_density.Add(Convert.ToInt32(dataGridView_Calculat.SelectedRows[i].Cells[6].Value));
-                                _idParty += $"{dataGridView_Calculat.SelectedRows[i].Cells[7].Value} ";
-                            }
-
-                            Calculater calculater = new Calculater();
-                            strengthActual = calculater.StrangthActual(breakingLoad_kH, long1, with);
-                            densityActual = calculater.DensityActual(drySampleWeight_gram, long1, with, height);
-                            humidityActual = calculater.HumidityActual(drySampleWeight_gram, sampleWetWeight_gram);
-
-                            int checkId = 0;
-                            for (int i = 0; i < id_density.Count(); i++)
-                            {
-                                checkId = id_density[0];
-                                if(checkId == id_density[i])
+                                string queryAerated_blockUpdate = $"update aerated_block set creat_result = 1 where (nParty = '{comboBox1.Text}')";
+                                string queryResult_blockInsert = $"INSERT INTO `mmm`.`result_block` (`id_party`, `density_actual`, `id_density`, `strength_actual`, `id_class`, `id_mark`, `humidity_actual`) VALUES ('{_idParty}', '{densityActual}', '{id_density[0]}', '{strengthActual}', '{_idForms[1]}', '{_idForms[0]}', '{humidityActual}');";
+                                try
                                 {
-                                    checkId = id_density[i];
-                                    check = true;
+                                    mCon.Open();
+                                    using (MySqlCommand mySqlCommand = mCon.CreateCommand())
+                                    {
+                                        mySqlCommand.Connection = mCon;
+                                        mySqlCommand.CommandText = queryResult_blockInsert;
+                                        mySqlCommand.ExecuteNonQuery();
+                                        mySqlCommand.CommandText = queryAerated_blockUpdate;
+                                        mySqlCommand.ExecuteNonQuery();
+                                    }
+                                    MessageBox.Show("Данные доставлены");
                                 }
-                                else
+                                catch (Exception ex)
                                 {
-                                    MessageBox.Show($"{Convert.ToString(checkId)} != {Convert.ToString(id_density[i])}\nОшибка в idDensiti");
-                                    check = false;
-                                    break;
+                                    MessageBox.Show(ex.Message);
+                                }
+                                finally
+                                {
+                                    mCon.Close();
                                 }
                             }
                         }
                         catch (Exception ex)
                         {
-                            MessageBox.Show("Ошибка расчёта" + ex);
+                            MessageBox.Show(ex.Message);
                         }
-                        if(check != false)
-                        {
-                            try
-                            {
-                                using (MySqlConnection mCon = new MySqlConnection(_conn))
-                                {
-                                    string queryAerated_blockUpdate = $"update aerated_block set creat_result = 1 where (nParty = '{comboBox1.Text}')";
-                                    string queryResult_blockInsert = $"INSERT INTO `mmm`.`result_block` (`id_party`, `density_actual`, `id_density`, `strength_actual`, `id_class`, `id_mark`, `humidity_actual`) VALUES ('{_idParty}', '{densityActual}', '{id_density[0]}', '{strengthActual}', '{_idForms[1]}', '{_idForms[0]}', '{humidityActual}');";
-                                    try
-                                    {
-                                        mCon.Open();
-                                        using(MySqlCommand mySqlCommand = mCon.CreateCommand())
-                                        {
-                                            mySqlCommand.Connection = mCon;
-                                            mySqlCommand.CommandText = queryResult_blockInsert;
-                                            mySqlCommand.ExecuteNonQuery();
-                                            mySqlCommand.CommandText = queryAerated_blockUpdate;
-                                            mySqlCommand.ExecuteNonQuery();
-                                        }
-                                        MessageBox.Show("Данные доставлены");
-                                    }
-                                    catch(Exception ex)
-                                    {
-                                        MessageBox.Show(ex.Message);
-                                    }
-                                    finally
-                                    {
-                                        mCon.Close();
-                                    }
-                                }
-                            }
-                            catch (Exception ex)
-                            {
-                                MessageBox.Show(ex.Message);
-                            }
-                        }
-                        check = true;
                     }
                 }
+                check = true;
             }
             if(check == false)
             {

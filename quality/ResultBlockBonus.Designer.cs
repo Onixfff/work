@@ -1,7 +1,7 @@
 ﻿
 namespace quality
 {
-    partial class ResultBlocks
+    partial class ResultBlockBonus
     {
         /// <summary>
         /// Required designer variable.
@@ -51,19 +51,17 @@ namespace quality
             this.dataGridView_ResultBlock.RowHeadersVisible = false;
             this.dataGridView_ResultBlock.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView_ResultBlock.Size = new System.Drawing.Size(776, 426);
-            this.dataGridView_ResultBlock.TabIndex = 1;
-            this.dataGridView_ResultBlock.DoubleClick += new System.EventHandler(this.dataGridView_ResultBlock_DoubleClick);
+            this.dataGridView_ResultBlock.TabIndex = 2;
             // 
-            // ResultBlocks
+            // ResultBlockBonus
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.dataGridView_ResultBlock);
-            this.Name = "ResultBlocks";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "ResultBlocks";
-            this.Load += new System.EventHandler(this.BaseForm_Load);
+            this.Name = "ResultBlockBonus";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "ResultBlockBonus";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_ResultBlock)).EndInit();
             this.ResumeLayout(false);
 
