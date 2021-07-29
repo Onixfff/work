@@ -96,6 +96,11 @@
             this.сверхуВнизToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.закрытьВсеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem7 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem8 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem9 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem10 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -444,13 +449,13 @@
             // главнаяToolStripMenuItem1
             // 
             this.главнаяToolStripMenuItem1.Name = "главнаяToolStripMenuItem1";
-            this.главнаяToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.главнаяToolStripMenuItem1.Size = new System.Drawing.Size(157, 22);
             this.главнаяToolStripMenuItem1.Text = "Главная";
             // 
             // отчетСводныйToolStripMenuItem
             // 
             this.отчетСводныйToolStripMenuItem.Name = "отчетСводныйToolStripMenuItem";
-            this.отчетСводныйToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.отчетСводныйToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.отчетСводныйToolStripMenuItem.Text = "Отчет сводный";
             this.отчетСводныйToolStripMenuItem.Click += new System.EventHandler(this.отчетСводныйToolStripMenuItem_Click);
             // 
@@ -460,8 +465,12 @@
             this.материалыToolStripMenuItem,
             this.номенклатураToolStripMenuItem,
             this.пользователиToolStripMenuItem,
-            this.оборудованиеToolStripMenuItem});
-            this.справочникиToolStripMenuItem.Enabled = false;
+            this.оборудованиеToolStripMenuItem,
+            this.toolStripMenuItem6,
+            this.toolStripMenuItem7,
+            this.toolStripMenuItem8,
+            this.toolStripMenuItem9,
+            this.toolStripMenuItem10});
             this.справочникиToolStripMenuItem.Name = "справочникиToolStripMenuItem";
             this.справочникиToolStripMenuItem.Size = new System.Drawing.Size(94, 46);
             this.справочникиToolStripMenuItem.Text = "Справочники";
@@ -622,6 +631,37 @@
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
             // 
+            // toolStripMenuItem6
+            // 
+            this.toolStripMenuItem6.Name = "toolStripMenuItem6";
+            this.toolStripMenuItem6.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem6.Text = "Классы";
+            this.toolStripMenuItem6.Click += new System.EventHandler(this.toolStripMenuItem6_Click);
+            // 
+            // toolStripMenuItem7
+            // 
+            this.toolStripMenuItem7.Name = "toolStripMenuItem7";
+            this.toolStripMenuItem7.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem7.Text = "№2";
+            // 
+            // toolStripMenuItem8
+            // 
+            this.toolStripMenuItem8.Name = "toolStripMenuItem8";
+            this.toolStripMenuItem8.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem8.Text = "№3";
+            // 
+            // toolStripMenuItem9
+            // 
+            this.toolStripMenuItem9.Name = "toolStripMenuItem9";
+            this.toolStripMenuItem9.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem9.Text = "№4";
+            // 
+            // toolStripMenuItem10
+            // 
+            this.toolStripMenuItem10.Name = "toolStripMenuItem10";
+            this.toolStripMenuItem10.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem10.Text = "№5";
+            // 
             // General
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -711,6 +751,11 @@
         private System.Windows.Forms.ToolStripMenuItem определениеВремениГашенияToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem журналТехнологическийToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem незнаюКакНазватьИГдеСтоятьToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem6;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem7;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem8;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem9;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem10;
     }
 }
 

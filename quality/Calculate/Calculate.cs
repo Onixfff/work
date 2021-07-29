@@ -15,12 +15,16 @@ namespace quality
         private int[] _idForms = new int[2];
         private string _idParty;
         private string _comment;
+        private string _nParty;
+        private string _database = "mmm";
+        private string _tableInserty = "result_block";
+        private string _tableUpdate = "aerated_block";
         public Calculat(string conn)
         {
             _conn = conn;
             InitializeComponent();
 
-            comboBox1.Items.AddRange(ItemsComboboxAndIdNParty());
+            comboBoxNParty.Items.AddRange(ItemsComboboxAndIdNParty());
         }
 
         private object[] ItemsComboboxAndIdNParty()
@@ -28,7 +32,7 @@ namespace quality
             using (MySqlConnection connection = new MySqlConnection(_conn))
             {
                 object[] selecter = new object[0];
-                string query = "select nParty from aerated_block where (creat_result = 0) group by nParty";
+                string query = "select nParty from "+ _database +"."+ _tableUpdate + " where (creat_result = 0) group by nParty";
                 MySqlCommand command = new MySqlCommand(query, connection);
                 try
                 {
@@ -61,16 +65,12 @@ namespace quality
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if(comboBox1.Text.Trim() != string.Empty) 
+            if (comboBoxNParty.Text.Trim() != string.Empty) 
             {
                 using (MySqlConnection connection = new MySqlConnection(_conn))
                 {
-                    label_brand.Visible = true;
-                    label_class.Visible = true;
-                    textBox_brand.Visible = true;
-                    textBox_class.Visible = true;
                     dataGridView_Calculat.Visible = true;
-                    string query = "SELECT drySampleWeight_gram, sampleWetWeight_gram ,BreakingLoad_kH, long_mm, width_mm, height_mm, idDensity, id FROM mmm.aerated_block where (nParty = '" + comboBox1.Text + "')";
+                    string query = "SELECT drySampleWeight_gram, sampleWetWeight_gram ,BreakingLoad_kH, long_mm, width_mm, height_mm, idDensity, id FROM "+ _database +"."+ _tableUpdate +" where (nParty = '" + comboBoxNParty.Text + "')";
                     connection.Open();
                     MySqlDataAdapter dD = new MySqlDataAdapter(query, connection);
                     DataSet ds = new DataSet();
@@ -81,6 +81,7 @@ namespace quality
                     VisiblFalse();
                     Rename();
                 }
+                _nParty = comboBoxNParty.Text.Trim();
             }
         }
 
@@ -115,32 +116,11 @@ namespace quality
             }
         }
 
-        private void textBox_brand_Click(object sender, EventArgs e)
-        {
-            Brand form = new Brand(_conn);
-
-            if (form.ShowDialog() == DialogResult.OK)
-            {
-                textBox_brand.Text = form.dataGridView_brand.SelectedRows[0].Cells[1].Value.ToString();
-                _idForms[0] = Convert.ToInt32(form.dataGridView_brand.SelectedRows[0].Cells[0].Value.ToString());
-            }
-        }
-
-        private void textBox_class_Click(object sender, EventArgs e)
-        {
-            Class form = new Class(_conn);
-
-            if (form.ShowDialog() == DialogResult.OK)
-            {
-                textBox_class.Text = form.dataGridView_class.SelectedRows[0].Cells[1].Value.ToString();
-                _idForms[1] = Convert.ToInt32(form.dataGridView_class.SelectedRows[0].Cells[0].Value.ToString());
-            }
-        }
-
         private void Submit_Click(object sender, EventArgs e)
         {
+            bool checkForm2 = false; //Проверка закрыли ли 2 форму если да то
             bool check = false; // Проверка ошибок и заполнений
-            if (comboBox1.Text.Trim() != string.Empty)
+            if (comboBoxNParty.Text.Trim() != string.Empty)
             {
                 List<float> with = new List<float>(); // ширина
                 List<float> height = new List<float>(); // высота
@@ -198,7 +178,7 @@ namespace quality
                 if (check != false)
                 {
                     object[] dataArray = new object[4];
-                    dataArray[0] = _idParty;
+                    dataArray[0] = _nParty;
                     dataArray[1] = densityActual;
                     dataArray[2] = strengthActual;
                     dataArray[3] = humidityActual;
@@ -216,8 +196,8 @@ namespace quality
                         {
                             using (MySqlConnection mCon = new MySqlConnection(_conn))
                             {
-                                string queryAerated_blockUpdate = $"update aerated_block set creat_result = 1 where (nParty = '{comboBox1.Text}')";
-                                string queryResult_blockInsert = $"INSERT INTO `mmm`.`result_block` (`id_party`, `density_actual`, `id_density`, `strength_actual`, `id_class`, `id_mark`, `humidity_actual`) VALUES ('{_idParty}', '{densityActual}', '{id_density[0]}', '{strengthActual}', '{_idForms[1]}', '{_idForms[0]}', '{humidityActual}');";
+                                string queryAerated_blockUpdate = $"update `{_database}`.`{_tableUpdate}` set creat_result = 1 where (nParty = '{comboBoxNParty.Text}')";
+                                string queryResult_blockInsert = $"INSERT INTO `{_database}`.`{_tableInserty}` (`id_party`, `density_actual`, `id_density`, `strength_actual`, `id_class`, `id_mark`, `humidity_actual`, `comments`) VALUES ('{_idParty}', '{densityActual}', '{id_density[0]}', '{strengthActual}', '{_idForms[1]}', '{_idForms[0]}', '{humidityActual}', '{_comment}');";
                                 try
                                 {
                                     mCon.Open();
@@ -246,14 +226,28 @@ namespace quality
                             MessageBox.Show(ex.Message);
                         }
                     }
+                    else
+                    {
+                        if(formConfirmation.DialogResult == DialogResult.Cancel)
+                        {
+                            checkForm2 = false;
+                        }
+                    }
                 }
                 check = true;
             }
-            if(check == false)
+            if (check == false)
             {
                 MessageBox.Show("Заполните все поля");
             }
-            this.Dispose();
+            else if (checkForm2 == false)
+            {
+
+            }
+            else
+            {
+                this.Dispose();
+            }
         }
     }
 }

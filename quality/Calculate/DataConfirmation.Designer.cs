@@ -192,6 +192,7 @@ namespace quality.Calculate
             // 
             // DataConfirmation
             // 
+            this.AcceptButton = this.buttonSend;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(639, 336);
@@ -203,7 +204,15 @@ namespace quality.Calculate
             this.Controls.Add(this.textBox_brand);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.buttonSend);
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(655, 375);
+            this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(655, 375);
             this.Name = "DataConfirmation";
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "DataConfirmation";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

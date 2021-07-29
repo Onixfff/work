@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using System.Configuration;
+using quality;
+using quality.directory;
 
 namespace Aeroblock
 {
@@ -225,8 +227,8 @@ namespace Aeroblock
         {
             try
             {
-                IEnumerable<quality.BaseForm> list = null;
-                list = MdiChildren.OfType<quality.BaseForm>();
+                IEnumerable<BaseForm> list = null;
+                list = MdiChildren.OfType<BaseForm>();
                 bool isFinish = true;
                 foreach (Form form in Application.OpenForms)
                 {
@@ -243,7 +245,7 @@ namespace Aeroblock
                 }
                 if (isFinish == false)
                 {
-                    quality.BaseForm form = new quality.BaseForm(conn4, "cement");
+                    BaseForm form = new BaseForm(conn4, "cement");
                     form.MdiParent = this;
                     form.Show();
                 }
@@ -260,8 +262,8 @@ namespace Aeroblock
         {
             try
             {
-                IEnumerable<quality.BaseForm> list = null;
-                list = MdiChildren.OfType<quality.BaseForm>();
+                IEnumerable<BaseForm> list = null;
+                list = MdiChildren.OfType<BaseForm>();
                 bool isFinish = true;
                 foreach (Form form in Application.OpenForms)
                 {
@@ -278,7 +280,7 @@ namespace Aeroblock
                 }
                 if (isFinish == false)
                 {
-                    quality.BaseForm form = new quality.BaseForm(conn4, "drymixes");
+                    BaseForm form = new BaseForm(conn4, "drymixes");
                     form.MdiParent = this;
                     form.Show();
                 }
@@ -295,8 +297,8 @@ namespace Aeroblock
         {
             try
             {
-                IEnumerable<quality.BaseForm> list = null;
-                list = MdiChildren.OfType<quality.BaseForm>();
+                IEnumerable<BaseForm> list = null;
+                list = MdiChildren.OfType<BaseForm>();
                 bool isFinish = true;
                 foreach (Form form in Application.OpenForms)
                 {
@@ -313,7 +315,7 @@ namespace Aeroblock
                 }
                 if (isFinish == false)
                 {
-                    quality.BaseForm form = new quality.BaseForm(conn4, "sludge");
+                    BaseForm form = new BaseForm(conn4, "sludge");
                     form.MdiParent = this;
                     form.Show();
                 }
@@ -330,8 +332,8 @@ namespace Aeroblock
         {
             try
             {
-                IEnumerable<quality.BaseForm> list = null;
-                list = MdiChildren.OfType<quality.BaseForm>();
+                IEnumerable<BaseForm> list = null;
+                list = MdiChildren.OfType<BaseForm>();
                 bool isFinish = true;
                 foreach (Form form in Application.OpenForms)
                 {
@@ -348,7 +350,7 @@ namespace Aeroblock
                 }
                 if (isFinish == false)
                 {
-                    quality.BaseForm form = new quality.BaseForm(conn4, "lime_activity");
+                    BaseForm form = new BaseForm(conn4, "lime_activity");
                     form.MdiParent = this;
                     form.Show();
                 }
@@ -365,8 +367,8 @@ namespace Aeroblock
         {
             try
             {
-                IEnumerable<quality.BaseForm> list = null;
-                list = MdiChildren.OfType<quality.BaseForm>();
+                IEnumerable<BaseForm> list = null;
+                list = MdiChildren.OfType<BaseForm>();
                 bool isFinish = true;
                 foreach (Form form in Application.OpenForms)
                 {
@@ -383,7 +385,7 @@ namespace Aeroblock
                 }
                 if (isFinish == false)
                 {
-                    quality.BaseForm form = new quality.BaseForm(conn4, "lime_blankings");
+                    BaseForm form = new BaseForm(conn4, "lime_blankings");
                     form.MdiParent = this;
                     form.Show();
                 }
@@ -400,8 +402,8 @@ namespace Aeroblock
         {
             try
             {
-                IEnumerable<quality.BaseForm> list = null;
-                list = MdiChildren.OfType<quality.BaseForm>();
+                IEnumerable<BaseForm> list = null;
+                list = MdiChildren.OfType<BaseForm>();
                 bool isFinish = true;
                 foreach (Form form in Application.OpenForms)
                 {
@@ -418,7 +420,7 @@ namespace Aeroblock
                 }
                 if (isFinish == false)
                 {
-                    quality.BaseForm form = new quality.BaseForm(conn4, "technology");
+                    BaseForm form = new BaseForm(conn4, "technology");
                     form.MdiParent = this;
                     form.Show();
                 }
@@ -435,8 +437,8 @@ namespace Aeroblock
         {
             try
             {
-                IEnumerable<quality.BaseForm> list = null;
-                list = MdiChildren.OfType<quality.BaseForm>();
+                IEnumerable<BaseForm> list = null;
+                list = MdiChildren.OfType<BaseForm>();
                 bool isFinish = true;
                 foreach (Form form in Application.OpenForms)
                 {
@@ -453,7 +455,7 @@ namespace Aeroblock
                 }
                 if (isFinish == false)
                 {
-                    quality.BaseForm form = new quality.BaseForm(conn4, "aerated_block");
+                    BaseForm form = new BaseForm(conn4, "aerated_block");
                     form.MdiParent = this;
                     form.Show();
                 }
@@ -474,8 +476,8 @@ namespace Aeroblock
         {
             try
             {
-                IEnumerable<quality.BaseForm> list = null;
-                list = MdiChildren.OfType<quality.BaseForm>();
+                IEnumerable<BaseForm> list = null;
+                list = MdiChildren.OfType<BaseForm>();
                 bool isFinish = true;
                 foreach (Form form in Application.OpenForms)
                 {
@@ -492,7 +494,7 @@ namespace Aeroblock
                 }
                 if (isFinish == false)
                 {
-                    quality.ResultBlocks form = new quality.ResultBlocks(conn4);
+                    ResultBlocks form = new ResultBlocks(conn4);
                     form.MdiParent = this;
                     form.Show();
                 }
@@ -502,6 +504,39 @@ namespace Aeroblock
                 MessageBox.Show("Ошибка незнаю как назвать и где стоять", ex.Message);
                 //Logger.Message("Ошибка просмотра заявок", ex.Message);
                 //toolSSLState.Text = ex.Message;
+            }
+        }
+
+        private void toolStripMenuItem6_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                IEnumerable<BaseFormDirectory> list = null;
+                list = MdiChildren.OfType<BaseFormDirectory>();
+                bool isFinish = true;
+                foreach (Form form in Application.OpenForms)
+                {
+                    if (form.Text == "class")
+                    {
+                        list.First().Activate();
+                        isFinish = true;
+                        break;
+                    }
+                    else
+                    {
+                        isFinish = false;
+                    }
+                }
+                if (isFinish == false)
+                {
+                    BaseFormDirectory form = new BaseFormDirectory(conn4, "class");
+                    form.MdiParent = this;
+                    form.Show();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка открытия формы", ex.Message);
             }
         }
     }
