@@ -29,27 +29,28 @@ namespace quality.directory
         /// </summary>
         private void InitializeComponent()
         {
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.menuStripDictionary = new System.Windows.Forms.MenuStrip();
             this.добавитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.изменитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.printDocument1 = new System.Drawing.Printing.PrintDocument();
+            this.удалитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dataGridViewDirectory = new System.Windows.Forms.DataGridView();
-            this.menuStrip1.SuspendLayout();
+            this.menuStripDictionary.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDirectory)).BeginInit();
             this.SuspendLayout();
             // 
-            // menuStrip1
+            // menuStripDictionary
             // 
-            this.menuStrip1.AllowMerge = false;
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuStripDictionary.AllowMerge = false;
+            this.menuStripDictionary.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.добавитьToolStripMenuItem,
-            this.изменитьToolStripMenuItem});
-            this.menuStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(800, 24);
-            this.menuStrip1.TabIndex = 1;
-            this.menuStrip1.Text = "menuStrip1";
+            this.изменитьToolStripMenuItem,
+            this.удалитьToolStripMenuItem});
+            this.menuStripDictionary.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
+            this.menuStripDictionary.Location = new System.Drawing.Point(0, 0);
+            this.menuStripDictionary.Name = "menuStripDictionary";
+            this.menuStripDictionary.Size = new System.Drawing.Size(800, 24);
+            this.menuStripDictionary.TabIndex = 1;
+            this.menuStripDictionary.Text = "menuStrip1";
             // 
             // добавитьToolStripMenuItem
             // 
@@ -58,12 +59,22 @@ namespace quality.directory
             this.добавитьToolStripMenuItem.Size = new System.Drawing.Size(87, 20);
             this.добавитьToolStripMenuItem.Text = "Добавить";
             this.добавитьToolStripMenuItem.TextDirection = System.Windows.Forms.ToolStripTextDirection.Horizontal;
+            this.добавитьToolStripMenuItem.Click += new System.EventHandler(this.добавитьToolStripMenuItem_Click);
             // 
             // изменитьToolStripMenuItem
             // 
+            this.изменитьToolStripMenuItem.Image = global::quality.Properties.Resources.application_edit_12962;
             this.изменитьToolStripMenuItem.Name = "изменитьToolStripMenuItem";
-            this.изменитьToolStripMenuItem.Size = new System.Drawing.Size(73, 20);
+            this.изменитьToolStripMenuItem.Size = new System.Drawing.Size(89, 20);
             this.изменитьToolStripMenuItem.Text = "Изменить";
+            this.изменитьToolStripMenuItem.Click += new System.EventHandler(this.изменитьToolStripMenuItem_Click);
+            // 
+            // удалитьToolStripMenuItem
+            // 
+            this.удалитьToolStripMenuItem.Image = global::quality.Properties.Resources.application_remove_12959;
+            this.удалитьToolStripMenuItem.Name = "удалитьToolStripMenuItem";
+            this.удалитьToolStripMenuItem.Size = new System.Drawing.Size(79, 20);
+            this.удалитьToolStripMenuItem.Text = "Удалить";
             // 
             // dataGridViewDirectory
             // 
@@ -76,13 +87,14 @@ namespace quality.directory
             this.dataGridViewDirectory.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridViewDirectory.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.dataGridViewDirectory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewDirectory.Location = new System.Drawing.Point(12, 27);
+            this.dataGridViewDirectory.Location = new System.Drawing.Point(12, 30);
+            this.dataGridViewDirectory.MultiSelect = false;
             this.dataGridViewDirectory.Name = "dataGridViewDirectory";
             this.dataGridViewDirectory.ReadOnly = true;
             this.dataGridViewDirectory.RowHeadersVisible = false;
             this.dataGridViewDirectory.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewDirectory.Size = new System.Drawing.Size(776, 411);
-            this.dataGridViewDirectory.TabIndex = 2;
+            this.dataGridViewDirectory.Size = new System.Drawing.Size(776, 408);
+            this.dataGridViewDirectory.TabIndex = 3;
             // 
             // BaseFormDirectory
             // 
@@ -90,12 +102,13 @@ namespace quality.directory
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.dataGridViewDirectory);
-            this.Controls.Add(this.menuStrip1);
-            this.MainMenuStrip = this.menuStrip1;
+            this.Controls.Add(this.menuStripDictionary);
+            this.MainMenuStrip = this.menuStripDictionary;
             this.Name = "BaseFormDirectory";
             this.Text = "Справочник";
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
+            this.Load += new System.EventHandler(this.BaseFormDirectory_Load);
+            this.menuStripDictionary.ResumeLayout(false);
+            this.menuStripDictionary.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDirectory)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -103,10 +116,10 @@ namespace quality.directory
         }
 
         #endregion
-        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.MenuStrip menuStripDictionary;
         private System.Windows.Forms.ToolStripMenuItem добавитьToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem изменитьToolStripMenuItem;
-        private System.Drawing.Printing.PrintDocument printDocument1;
         public System.Windows.Forms.DataGridView dataGridViewDirectory;
+        private System.Windows.Forms.ToolStripMenuItem удалитьToolStripMenuItem;
     }
 }

@@ -130,7 +130,10 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
+            this.MaximumSize = new System.Drawing.Size(341, 218);
+            this.MinimumSize = new System.Drawing.Size(341, 218);
             this.Name = "user_pass";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Вход в систему";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);

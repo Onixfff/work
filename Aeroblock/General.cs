@@ -468,10 +468,6 @@ namespace Aeroblock
             }
         }
 
-        private void ЖToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-        }
-
         private void незнаюКакНазватьИГдеСтоятьToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
@@ -530,6 +526,171 @@ namespace Aeroblock
                 if (isFinish == false)
                 {
                     BaseFormDirectory form = new BaseFormDirectory(conn4, "class");
+                    form.MdiParent = this;
+                    form.Show();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка открытия формы", ex.Message);
+            }
+        }
+
+        private void групповыеМатериалыToolStripMenuItem7_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                IEnumerable<BaseFormDirectory> list = null;
+                list = MdiChildren.OfType<BaseFormDirectory>();
+                bool isFinish = true;
+                foreach (Form form in Application.OpenForms)
+                {
+                    if (form.Text == "group_material")
+                    {
+                        list.First().Activate();
+                        isFinish = true;
+                        break;
+                    }
+                    else
+                    {
+                        isFinish = false;
+                    }
+                }
+                if (isFinish == false)
+                {
+                    BaseFormDirectory form = new BaseFormDirectory(conn4, "group_material");
+                    form.MdiParent = this;
+                    form.Show();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка открытия формы", ex.Message);
+            }
+        }
+
+        private void производителиToolStripMenuItem8_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                IEnumerable<BaseFormDirectory> list = null;
+                list = MdiChildren.OfType<BaseFormDirectory>();
+                bool isFinish = true;
+                foreach (Form form in Application.OpenForms)
+                {
+                    if (form.Text == "manufacturer")
+                    {
+                        list.First().Activate();
+                        isFinish = true;
+                        break;
+                    }
+                    else
+                    {
+                        isFinish = false;
+                    }
+                }
+                if (isFinish == false)
+                {
+                    BaseFormDirectory form = new BaseFormDirectory(conn4, "manufacturer");
+                    form.MdiParent = this;
+                    form.Show();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка открытия формы", ex.Message);
+            }
+        }
+
+        private void маркиToolStripMenuItem9_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                IEnumerable<BaseFormDirectory> list = null;
+                list = MdiChildren.OfType<BaseFormDirectory>();
+                bool isFinish = true;
+                foreach (Form form in Application.OpenForms)
+                {
+                    if (form.Text == "mark")
+                    {
+                        list.First().Activate();
+                        isFinish = true;
+                        break;
+                    }
+                    else
+                    {
+                        isFinish = false;
+                    }
+                }
+                if (isFinish == false)
+                {
+                    BaseFormDirectory form = new BaseFormDirectory(conn4, "mark");
+                    form.MdiParent = this;
+                    form.Show();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка открытия формы", ex.Message);
+            }
+        }
+
+        private void МатериалыыToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                IEnumerable<BaseFormDirectory> list = null;
+                list = MdiChildren.OfType<BaseFormDirectory>();
+                bool isFinish = true;
+                foreach (Form form in Application.OpenForms)
+                {
+                    if (form.Text == "material")
+                    {
+                        list.First().Activate();
+                        isFinish = true;
+                        break;
+                    }
+                    else
+                    {
+                        isFinish = false;
+                    }
+                }
+                if (isFinish == false)
+                {
+                    BaseFormDirectory form = new BaseFormDirectory(conn4, "material");
+                    form.MdiParent = this;
+                    form.Show();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка открытия формы", ex.Message);
+            }
+        }
+
+        private void единицыИзмеренияToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                IEnumerable<BaseFormDirectory> list = null;
+                list = MdiChildren.OfType<BaseFormDirectory>();
+                bool isFinish = true;
+                foreach (Form form in Application.OpenForms)
+                {
+                    if (form.Text == "units")
+                    {
+                        list.First().Activate();
+                        isFinish = true;
+                        break;
+                    }
+                    else
+                    {
+                        isFinish = false;
+                    }
+                }
+                if (isFinish == false)
+                {
+                    BaseFormDirectory form = new BaseFormDirectory(conn4, "units");
                     form.MdiParent = this;
                     form.Show();
                 }

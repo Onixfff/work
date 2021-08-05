@@ -41,8 +41,7 @@ namespace Aeroblock
         private void buttonOK_Click(object sender, EventArgs e)
         {
             //Проверка наличия пользователя в системе
-            //MySQLData.GetScalar.Result res = MySQLData.GetScalar.Scalar("select `name` from `users.users` where upper(`name`)='" + textBox_user.Text + "';", conn);
-            MySQLData.GetScalar.Result res = MySQLData.GetScalar.Scalar($"SELECT name FROM users.users where upper(`name`) = '{textBox_user.Text}';", conn);
+            MySQLData.GetScalar.Result res = MySQLData.GetScalar.Scalar("select `name` from users.users where upper(`name`)='" + textBox_user.Text + "';", conn);
             if (res.HasError)
             {
                 label_err.Text = "пользователь с таким именем не существует";
@@ -51,11 +50,9 @@ namespace Aeroblock
             }
             else
             {
-
                 user = res.ResultText;
-                //MySQLData.GetScalar.Result pass = MySQLData.GetScalar.Scalar("select `pass` from `users` where upper(`name`)='" + textBox_user.Text + "';", conn);
-                MySQLData.GetScalar.Result pass = MySQLData.GetScalar.Scalar($"select pass from users.users where name = '{textBox_user.Text}';", conn);
-                //if(textBox_pass.Text != pass.ResultText)
+                MySQLData.GetScalar.Result pass = MySQLData.GetScalar.Scalar("select `pass` from users.users where upper(`name`)='" + textBox_user.Text + "';", conn);
+                if(textBox_pass.Text != pass.ResultText)
                 if("System.Byte[]" != pass.ResultText)
                 {
                     label_err.Text = "неверный пароль";
@@ -63,7 +60,7 @@ namespace Aeroblock
                 }
                 else
                 {
-                    MySQLData.GetScalar.Result prev = MySQLData.GetScalar.Scalar("select `previl` from `users` where upper(`name`)='" + textBox_user.Text + "';", conn);
+                    MySQLData.GetScalar.Result prev = MySQLData.GetScalar.Scalar("select `previl` from users.users where upper(`name`)='" + textBox_user.Text + "';", conn);
                     previl = prev.ResultText;
                     DialogResult = DialogResult.OK;
                     this.Close();

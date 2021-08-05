@@ -187,7 +187,6 @@ namespace quality
 
                     if (formConfirmation.ShowDialog() == DialogResult.OK)
                     {
-                        //HACK _idForms должна брать id а берёт текст.
                         _idForms[1] = formConfirmation.idForms[1];
                         _idForms[0] = formConfirmation.idForms[0];
                         _comment = formConfirmation.richTextBox1.Text;

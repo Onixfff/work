@@ -59,12 +59,24 @@ namespace quality.Calculate
                         DialogResult = DialogResult.OK;
                         this.Close();
                     }
+                    else
+                    {
+                        ShowNotificationClient("Кол-во символов в коментарии не должно привышать 120 у вас "+richTextBox1.Text.Length);
+                    }
+                }
+                else
+                {
+                    ShowNotificationClient();
                 }
             }
             else
             {
-
+                ShowNotificationClient();
             }
+        }
+        private void ShowNotificationClient(string text = "Выбирите класс и марку для отправки")
+        {
+            MessageBox.Show(text);
         }
     }
 }

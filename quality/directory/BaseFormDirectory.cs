@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using quality.Directory.addDirectortData;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -25,6 +26,76 @@ namespace quality.directory
             Database database = new Database(_conn, table, dataGridViewDirectory);
             NameColumns nameColumns = new NameColumns(dataGridViewDirectory, table);
             nameColumns.ChangesDisplayOfData();
+        }
+
+        private void BaseFormDirectory_Load(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Maximized;
+        }
+
+        private void добавитьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ClassDirectory formAdd = new ClassDirectory(_table, _conn);
+            formAdd.ShowDialog();
+        }
+
+        private void изменитьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
+            Dictionary<string, string> dataChange = new Dictionary<string, string>();
+            int coin = dataGridViewDirectory.SelectedRows.Count;
+            List<string> nameElements = new List<string>() {"id","textBoxName", "richTextBoxComment", "", "richTextBoxComment" };
+            for (int i = 0; i < coin; i++)
+            {
+                dataChange.Add("id", dataGridViewDirectory.SelectedRows[i].Cells[0].Value.ToString());
+                dataChange.Add("textBoxName", dataGridViewDirectory.SelectedRows[i].Cells[1].Value.ToString());
+            }
+            switch (_table)
+            {
+                case "class":
+                    for (int i = 0; i < coin; i++)
+                    {
+                        dataChange.Add("richTextBoxComment", dataGridViewDirectory.SelectedRows[i].Cells[2].Value.ToString());
+                    }
+                    break;
+                case "group_material":
+                    for (int i = 0; i < coin; i++)
+                    {
+                        dataChange.Add("richTextBoxComment", dataGridViewDirectory.SelectedRows[i].Cells[2].Value.ToString());
+                    }
+                    break;
+                case "manufacturer":
+                    for (int i = 0; i < coin; i++)
+                    {
+                        dataChange.Add("richTextBoxComment", dataGridViewDirectory.SelectedRows[i].Cells[2].Value.ToString());
+                    }
+                    break;
+                case "mark":
+                    for (int i = 0; i < coin; i++)
+                    {
+                        dataChange.Add("richTextBoxComment", dataGridViewDirectory.SelectedRows[i].Cells[2].Value.ToString());
+                    }
+                    break;
+                case "material":
+                    for (int i = 0; i < coin; i++)
+                    {
+                        dataChange.Add("richTextBoxComment", dataGridViewDirectory.SelectedRows[i].Cells[7].Value.ToString());
+                        dataChange.Add("_textBoxShifr", dataGridViewDirectory.SelectedRows[i].Cells[2].Value.ToString());
+                        dataChange.Add("_textBoxMaterial", dataGridViewDirectory.SelectedRows[i].Cells[5].Value.ToString());
+                        dataChange.Add("_textBoxManufacturer", dataGridViewDirectory.SelectedRows[i].Cells[6].Value.ToString());
+                        dataChange.Add("id_group", dataGridViewDirectory.SelectedRows[i].Cells[4].Value.ToString());
+                        dataChange.Add("id_manifactur", dataGridViewDirectory.SelectedRows[i].Cells[3].Value.ToString());
+                    }
+                    break;
+                case "units":
+                    break;
+                default:
+                    MessageBox.Show("Такую формы нету");
+                    break;
+            }
+
+            ClassDirectory formAdd = new ClassDirectory(_table, _conn, dataChange);
+            formAdd.ShowDialog();
         }
     }
 
@@ -53,6 +124,7 @@ namespace quality.directory
                     GetDatabase(_dataBase,table, query);
                     break;
                 case "material":
+                    query = $"SELECT {_dataBase}.{table}.id, {_dataBase}.{table}.name, {_dataBase}.{table}.shifr, {_dataBase}.{table}.id_group, {_dataBase}.{table}.id_manifactur, {_dataBase}.group_material.name as 'Метериал', {_dataBase}.manufacturer.name as 'Производитель', {_dataBase}.{table}.comments FROM {_dataBase}.{table} LEFT JOIN {_dataBase}.group_material ON {table}.id_group = group_material.id LEFT JOIN {_dataBase}.manufacturer ON {table}.id_manifactur = manufacturer.id";
                     GetDatabase(_dataBase,table, query);
                     break;
                 case "units":
@@ -114,19 +186,30 @@ namespace quality.directory
                     _invisibleElements.Add("id");
                     break;
                 case "group_material":
-
+                    rename.Add("name", "Наименование");
+                    rename.Add("comments", "Коментарий");
+                    _invisibleElements.Add("id");
                     break;
                 case "manufacturer":
-
+                    rename.Add("name", "Наименование");
+                    rename.Add("comments", "Коментарий");
+                    _invisibleElements.Add("id");
                     break;
                 case "mark":
-
+                    rename.Add("name", "Наименование");
+                    rename.Add("comments", "Коментарий");
+                    _invisibleElements.Add("id");
                     break;
                 case "material":
-
+                    rename.Add("name", "Наименование");
+                    rename.Add("comments", "Коментарий");
+                    _invisibleElements.Add("id");
+                    _invisibleElements.Add("id_group");
+                    _invisibleElements.Add("id_manifactur");
                     break;
                 case "units":
-
+                    rename.Add("name", "Наименование");
+                    _invisibleElements.Add("id");
                     break;
                 default:
                     MessageBox.Show("Для такой формы нету визуальных изменений");

@@ -219,10 +219,23 @@
     <Compile Include="Calculate\DataConfirmation.Designer.cs">
       <DependentUpon>DataConfirmation.cs</DependentUpon>
     </Compile>
-    <Compile Include="directory\BaseFormDirectory.cs">
+    <Compile Include="Directory\addDirectortData\ClassDirectory.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="directory\BaseFormDirectory.Designer.cs">
+    <Compile Include="Directory\addDirectortData\ClassDirectory.Designer.cs">
+      <DependentUpon>ClassDirectory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Directory\addDirectortData\DatabaseDirectoryAdd.cs" />
+    <Compile Include="Directory\addDirectortData\GroupAndManufactur.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Directory\addDirectortData\GroupAndManufactur.Designer.cs">
+      <DependentUpon>GroupAndManufactur.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Directory\BaseFormDirectory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Directory\BaseFormDirectory.Designer.cs">
       <DependentUpon>BaseFormDirectory.cs</DependentUpon>
     </Compile>
     <Compile Include="Message.cs" />
@@ -290,7 +303,13 @@
     <EmbeddedResource Include="Calculate\DataConfirmation.resx">
       <DependentUpon>DataConfirmation.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="directory\BaseFormDirectory.resx">
+    <EmbeddedResource Include="Directory\addDirectortData\ClassDirectory.resx">
+      <DependentUpon>ClassDirectory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Directory\addDirectortData\GroupAndManufactur.resx">
+      <DependentUpon>GroupAndManufactur.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Directory\BaseFormDirectory.resx">
       <DependentUpon>BaseFormDirectory.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -356,6 +375,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\application_remove_12959.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
