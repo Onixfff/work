@@ -15,18 +15,16 @@ namespace quality.Directory.addDirectortData
         private int id;
         private Label _labelShifr; //hack Изменить название.
         private Label _labelMaterial;
-        private Label _labelManufacturer;
 
         private Dictionary<string, string> _changes;
 
         private TextBox _textBoxShifr;
         private TextBox _textBoxMaterial;
-        private TextBox _textBoxManufacturer;
 
         private string _table;
         private string _query;
         private string _conn;
-        private int[] _idForms = new int[2]; // _idForms[0] - Group, _idForms[1] - Manufactur
+        private int[] _idForms = new int[1]; // _idForms[0] - Group, _idForms[1] - Manufactur
         public ClassDirectory(string table, string conn, Dictionary<string, string> changes = null)
         {
             _conn = conn;
@@ -98,14 +96,6 @@ namespace quality.Directory.addDirectortData
                     _labelMaterial.Size = new Size(_labelMaterial.PreferredWidth, _labelMaterial.PreferredHeight);
                     _labelMaterial.Location = new Point(19, 124);
                     //
-                    // Инициализация labelMaufacturer
-                    //
-                    _labelManufacturer = new Label();
-                    _labelManufacturer.AutoSize = true;
-                    _labelManufacturer.Text = "Производитель";
-                    _labelManufacturer.Size = new Size(_labelManufacturer.PreferredWidth,_labelManufacturer.PreferredHeight);
-                    _labelManufacturer.Location = new Point(224, 28);
-                    //
                     // Изменяет местоположение labelComment
                     //
                     labelComment.Location = new Point(224, 95);
@@ -143,24 +133,13 @@ namespace quality.Directory.addDirectortData
                     _textBoxMaterial.TabIndex = 3;
                     _textBoxMaterial.Click += new System.EventHandler(TextBoxMaterial_Click);
                     //
-                    // Инициализирует _textBoxManufacturer
-                    //
-                    _textBoxManufacturer = new TextBox();
-                    _textBoxManufacturer.Location = new Point(316, 25);
-                    _textBoxManufacturer.Size = new Size(134, 20);
-                    _textBoxManufacturer.Name = "_textBoxManufacturer";
-                    _textBoxManufacturer.TabIndex = 4;
-                    _textBoxManufacturer.Click += new System.EventHandler(TextBoxManufacturer_Click);
-                    //
                     // Добавление в колекцию Controls для отображения
                     //
                     this.Controls.Add(_textBoxShifr);
                     this.Controls.Add(_labelShifr);
                     this.Controls.Add(_labelMaterial);
-                    this.Controls.Add(_labelManufacturer);
                     this.Controls.Add(_textBoxShifr);
                     this.Controls.Add(_textBoxMaterial);
-                    this.Controls.Add(_textBoxManufacturer);
                     //
                     // Изменение местоположения кнопки
                     //
@@ -240,7 +219,7 @@ namespace quality.Directory.addDirectortData
 
                             break;
                         case "material":
-                            _query = $"(`name`, `shifr`, `id_group`, `id_manifactur`, `comments`) VALUES ('{textBoxName.Text}', '{_textBoxShifr.Text}', '{_idForms[0]}', '{_idForms[1]}', '{richTextBoxComment.Text}');";
+                            _query = $"(`name`, `shifr`, `id_group`, `comments`) VALUES ('{textBoxName.Text}', '{_textBoxShifr.Text}', '{_idForms[0]}', '{richTextBoxComment.Text}');";
                             break;
                         case "units":
                             _query = $"(`name`) VALUES ('{textBoxName.Text}');";
@@ -269,7 +248,7 @@ namespace quality.Directory.addDirectortData
 
                             break;
                         case "material":
-                            _query = $"`name` = '{textBoxName.Text}', `shifr` = '{_textBoxShifr.Text}', `id_group` = '{_idForms[0]}', `id_manifactur` = '{_idForms[1]}', `comments` = '{richTextBoxComment.Text}' WHERE (`id` = '{id}');";
+                            _query = $"`name` = '{textBoxName.Text}', `shifr` = '{_textBoxShifr.Text}', `id_group` = '{_idForms[0]}', `comments` = '{richTextBoxComment.Text}' WHERE (`id` = '{id}');";
                             break;
                         case "units":
                             _query = $"`name` = '{textBoxName.Text}' where (`id` = '{id}')";
@@ -302,18 +281,6 @@ namespace quality.Directory.addDirectortData
                 {
                     _textBoxMaterial.Text = groupOfMoldsAndManufacturers.dataGridViewGroupAndManufactur.SelectedRows[0].Cells[1].Value.ToString();
                     _idForms[0] = Convert.ToInt32(groupOfMoldsAndManufacturers.dataGridViewGroupAndManufactur.SelectedRows[0].Cells[0].Value.ToString());
-                }
-            }
-        }
-
-        private void TextBoxManufacturer_Click(object sender, EventArgs e)
-        {
-            using (GroupAndManufactur groupOfMoldsAndManufacturers = new GroupAndManufactur(_conn, _textBoxManufacturer.Name))
-            {
-                if (groupOfMoldsAndManufacturers.ShowDialog() == DialogResult.OK)
-                {
-                    _textBoxManufacturer.Text = groupOfMoldsAndManufacturers.dataGridViewGroupAndManufactur.SelectedRows[0].Cells[1].Value.ToString();
-                    _idForms[1] = Convert.ToInt32(groupOfMoldsAndManufacturers.dataGridViewGroupAndManufactur.SelectedRows[0].Cells[0].Value.ToString());
                 }
             }
         }

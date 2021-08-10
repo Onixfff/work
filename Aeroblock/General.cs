@@ -18,8 +18,8 @@ namespace Aeroblock
         private string conn = ConfigurationManager.ConnectionStrings["conn"].ConnectionString;
         private string conn2 = ConfigurationManager.ConnectionStrings["conn2"].ConnectionString;
         private string conn3 = ConfigurationManager.ConnectionStrings["conn3"].ConnectionString;
-        private string conn4 = ConfigurationManager.ConnectionStrings["conn4Local"].ConnectionString;
-        //private string conn4 = ConfigurationManager.ConnectionStrings["conn4"].ConnectionString;
+        //private string conn4 = ConfigurationManager.ConnectionStrings["conn4Local"].ConnectionString;
+        private string conn4 = ConfigurationManager.ConnectionStrings["conn4"].ConnectionString;
 
 
         public General()

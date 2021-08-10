@@ -79,12 +79,10 @@ namespace quality.directory
                 case "material":
                     for (int i = 0; i < coin; i++)
                     {
-                        dataChange.Add("richTextBoxComment", dataGridViewDirectory.SelectedRows[i].Cells[7].Value.ToString());
+                        dataChange.Add("richTextBoxComment", dataGridViewDirectory.SelectedRows[i].Cells[5].Value.ToString());
                         dataChange.Add("_textBoxShifr", dataGridViewDirectory.SelectedRows[i].Cells[2].Value.ToString());
-                        dataChange.Add("_textBoxMaterial", dataGridViewDirectory.SelectedRows[i].Cells[5].Value.ToString());
-                        dataChange.Add("_textBoxManufacturer", dataGridViewDirectory.SelectedRows[i].Cells[6].Value.ToString());
-                        dataChange.Add("id_group", dataGridViewDirectory.SelectedRows[i].Cells[4].Value.ToString());
-                        dataChange.Add("id_manifactur", dataGridViewDirectory.SelectedRows[i].Cells[3].Value.ToString());
+                        dataChange.Add("_textBoxMaterial", dataGridViewDirectory.SelectedRows[i].Cells[4].Value.ToString());
+                        dataChange.Add("id_group", dataGridViewDirectory.SelectedRows[i].Cells[3].Value.ToString());
                     }
                     break;
                 case "units":
@@ -124,7 +122,7 @@ namespace quality.directory
                     GetDatabase(_dataBase,table, query);
                     break;
                 case "material":
-                    query = $"SELECT {_dataBase}.{table}.id, {_dataBase}.{table}.name, {_dataBase}.{table}.shifr, {_dataBase}.{table}.id_group, {_dataBase}.{table}.id_manifactur, {_dataBase}.group_material.name as 'Метериал', {_dataBase}.manufacturer.name as 'Производитель', {_dataBase}.{table}.comments FROM {_dataBase}.{table} LEFT JOIN {_dataBase}.group_material ON {table}.id_group = group_material.id LEFT JOIN {_dataBase}.manufacturer ON {table}.id_manifactur = manufacturer.id";
+                    query = $"SELECT {_dataBase}.{table}.id, {_dataBase}.{table}.name, {_dataBase}.{table}.shifr, {_dataBase}.{table}.id_group, {_dataBase}.group_material.name as 'Метериал', {_dataBase}.{table}.comments FROM {_dataBase}.{table} LEFT JOIN {_dataBase}.group_material ON {table}.id_group = group_material.id";
                     GetDatabase(_dataBase,table, query);
                     break;
                 case "units":
@@ -138,16 +136,23 @@ namespace quality.directory
 
         private void GetDatabase(string _database, string table, string query)
         {
-            using (MySqlConnection mCon = new MySqlConnection(_conn))
+            try
             {
-                mCon.Open();
-                string sql = query;
-                MySqlDataAdapter dD = new MySqlDataAdapter(sql, mCon);
-                DataSet ds = new DataSet();
-                ds.Reset();
-                dD.Fill(ds, sql);
-                _dataGridViewDirectory.DataSource = ds.Tables[0];
-                mCon.Close();
+                using (MySqlConnection mCon = new MySqlConnection(_conn))
+                {
+                    mCon.Open();
+                    string sql = query;
+                    MySqlDataAdapter dD = new MySqlDataAdapter(sql, mCon);
+                    DataSet ds = new DataSet();
+                    ds.Reset();
+                    dD.Fill(ds, sql);
+                    _dataGridViewDirectory.DataSource = ds.Tables[0];
+                    mCon.Close();
+                }
+            }
+            catch(MySqlException ex)
+            {
+                MessageBox.Show("Не удалось загрузить данные с базы данных" + ex.Message);
             }
         }
     }
@@ -205,7 +210,6 @@ namespace quality.directory
                     rename.Add("comments", "Коментарий");
                     _invisibleElements.Add("id");
                     _invisibleElements.Add("id_group");
-                    _invisibleElements.Add("id_manifactur");
                     break;
                 case "units":
                     rename.Add("name", "Наименование");
