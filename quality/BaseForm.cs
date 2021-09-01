@@ -42,7 +42,7 @@ namespace quality
 
             InitializeComponent();
 
-            this.Text = table;
+            this.AccessibleDefaultActionDescription = table;
 
             //дата с 1 числа этого месяца.
             int year = dateTimePicker_before.Value.Year;
@@ -78,22 +78,29 @@ namespace quality
             switch (table)
             {
                 case "cement":
+                    this.Text = "Цемент";
                     break;
                 case "lime_activity":
+                    this.Text = "Определение активности";
                     break;
                 case "lime_blankings":
+                    this.Text = "Определение времени гашения";
                     break;
                 case "aerated_block":
                     idElement.Add("idDensity", "value");
                     tableName.Add("mmm", "density");
                     calculate.Visible = true;
                     label5.Visible = true;
+                    this.Text = "Испытание";
                     break;
                 case "drymixes":
+                    this.Text = "Гипс";
                     break;
                 case "technology":
+                    this.Text = "Журнал технологический";
                     break;
                 case "sludge":
+                    this.Text = "Шлам";
                     break;
             }
         }

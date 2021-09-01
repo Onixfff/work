@@ -10,9 +10,9 @@ namespace quality.Directory.addDirectortData
     class DatabaseDirectoryAdd
     {
         private string _dbName = "material_costumer_manufactur";
-        private string _table;
+        private readonly string _table;
         private string _query;
-        private string _conn;
+        private readonly string _conn;
 
         public DatabaseDirectoryAdd(string table, string conn)
         {

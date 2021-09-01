@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using System.Configuration;
 using quality;
 using quality.directory;
+using quality.Messenger;
 
 namespace Aeroblock
 {
@@ -18,8 +19,8 @@ namespace Aeroblock
         private string conn = ConfigurationManager.ConnectionStrings["conn"].ConnectionString;
         private string conn2 = ConfigurationManager.ConnectionStrings["conn2"].ConnectionString;
         private string conn3 = ConfigurationManager.ConnectionStrings["conn3"].ConnectionString;
-        //private string conn4 = ConfigurationManager.ConnectionStrings["conn4Local"].ConnectionString;
-        private string conn4 = ConfigurationManager.ConnectionStrings["conn4"].ConnectionString;
+        private string conn4 = ConfigurationManager.ConnectionStrings["conn4Local"].ConnectionString;
+        //private string conn4 = ConfigurationManager.ConnectionStrings["conn4"].ConnectionString;
 
 
         public General()
@@ -232,7 +233,7 @@ namespace Aeroblock
                 bool isFinish = true;
                 foreach (Form form in Application.OpenForms)
                 {
-                    if (form.Text == "cement")
+                    if (form.AccessibleDefaultActionDescription == "cement")
                     {
                         list.First().Activate();
                         isFinish = true;
@@ -267,7 +268,7 @@ namespace Aeroblock
                 bool isFinish = true;
                 foreach (Form form in Application.OpenForms)
                 {
-                    if (form.Text == "drymixes")
+                    if (form.AccessibleDefaultActionDescription == "drymixes")
                     {
                         list.First().Activate();
                         isFinish = true;
@@ -302,7 +303,7 @@ namespace Aeroblock
                 bool isFinish = true;
                 foreach (Form form in Application.OpenForms)
                 {
-                    if (form.Text == "sludge")
+                    if (form.AccessibleDefaultActionDescription == "sludge")
                     {
                         list.First().Activate();
                         isFinish = true;
@@ -337,7 +338,7 @@ namespace Aeroblock
                 bool isFinish = true;
                 foreach (Form form in Application.OpenForms)
                 {
-                    if (form.Text == "lime_activity")
+                    if (form.AccessibleDefaultActionDescription == "lime_activity")
                     {
                         list.First().Activate();
                         isFinish = true;
@@ -372,7 +373,7 @@ namespace Aeroblock
                 bool isFinish = true;
                 foreach (Form form in Application.OpenForms)
                 {
-                    if (form.Text == "lime_blankings")
+                    if (form.AccessibleDefaultActionDescription == "lime_blankings")
                     {
                         list.First().Activate();
                         isFinish = true;
@@ -407,7 +408,7 @@ namespace Aeroblock
                 bool isFinish = true;
                 foreach (Form form in Application.OpenForms)
                 {
-                    if (form.Text == "technology")
+                    if (form.AccessibleDefaultActionDescription == "technology")
                     {
                         list.First().Activate();
                         isFinish = true;
@@ -442,7 +443,7 @@ namespace Aeroblock
                 bool isFinish = true;
                 foreach (Form form in Application.OpenForms)
                 {
-                    if (form.Text == "aerated_block")
+                    if (form.AccessibleDefaultActionDescription == "aerated_block")
                     {
                         list.First().Activate();
                         isFinish = true;
@@ -477,7 +478,7 @@ namespace Aeroblock
                 bool isFinish = true;
                 foreach (Form form in Application.OpenForms)
                 {
-                    if (form.Text == "result_block")
+                    if (form.Text == "result_block")//Todo заменить text на AccessibleDefaultActionDescription и переименовать Для пользователя.
                     {
                         list.First().Activate();
                         isFinish = true;
@@ -512,7 +513,7 @@ namespace Aeroblock
                 bool isFinish = true;
                 foreach (Form form in Application.OpenForms)
                 {
-                    if (form.Text == "class")
+                    if (form.AccessibleDefaultActionDescription == "class")
                     {
                         list.First().Activate();
                         isFinish = true;
@@ -545,7 +546,7 @@ namespace Aeroblock
                 bool isFinish = true;
                 foreach (Form form in Application.OpenForms)
                 {
-                    if (form.Text == "group_material")
+                    if (form.AccessibleDefaultActionDescription == "group_material")
                     {
                         list.First().Activate();
                         isFinish = true;
@@ -578,7 +579,7 @@ namespace Aeroblock
                 bool isFinish = true;
                 foreach (Form form in Application.OpenForms)
                 {
-                    if (form.Text == "manufacturer")
+                    if (form.AccessibleDefaultActionDescription == "manufacturer")
                     {
                         list.First().Activate();
                         isFinish = true;
@@ -611,7 +612,7 @@ namespace Aeroblock
                 bool isFinish = true;
                 foreach (Form form in Application.OpenForms)
                 {
-                    if (form.Text == "mark")
+                    if (form.AccessibleDefaultActionDescription == "mark")
                     {
                         list.First().Activate();
                         isFinish = true;
@@ -644,7 +645,7 @@ namespace Aeroblock
                 bool isFinish = true;
                 foreach (Form form in Application.OpenForms)
                 {
-                    if (form.Text == "material")
+                    if (form.AccessibleDefaultActionDescription == "material")
                     {
                         list.First().Activate();
                         isFinish = true;
@@ -677,7 +678,7 @@ namespace Aeroblock
                 bool isFinish = true;
                 foreach (Form form in Application.OpenForms)
                 {
-                    if (form.Text == "units")
+                    if (form.AccessibleDefaultActionDescription == "units")
                     {
                         list.First().Activate();
                         isFinish = true;
@@ -691,6 +692,39 @@ namespace Aeroblock
                 if (isFinish == false)
                 {
                     BaseFormDirectory form = new BaseFormDirectory(conn4, "units");
+                    form.MdiParent = this;
+                    form.Show();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка открытия формы", ex.Message);
+            }
+        }
+
+        private void MessengerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                IEnumerable<MessengerMain> list = null;
+                list = MdiChildren.OfType<MessengerMain>();
+                bool isFinish = true;
+                foreach (Form form in Application.OpenForms)
+                {
+                    if (form.AccessibleDefaultActionDescription == "messengers")
+                    {
+                        list.First().Activate();
+                        isFinish = true;
+                        break;
+                    }
+                    else
+                    {
+                        isFinish = false;
+                    }
+                }
+                if (isFinish == false)
+                {
+                    MessengerMain form = new MessengerMain(conn4, "messengers");
                     form.MdiParent = this;
                     form.Show();
                 }

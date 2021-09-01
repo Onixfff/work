@@ -55,17 +55,17 @@
             this.label3 = new System.Windows.Forms.Label();
             this.BreakingLoad_kH = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.nParty = new System.Windows.Forms.TextBox();
-            this.label_nParty = new System.Windows.Forms.Label();
             this.day_night = new System.Windows.Forms.ComboBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.density_mpa = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.densityGrade = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.densityClass = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
             this.humidity = new System.Windows.Forms.TextBox();
+            this.densityClass = new System.Windows.Forms.TextBox();
+            this.densityGrade = new System.Windows.Forms.TextBox();
+            this.density_mpa = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label_nParty = new System.Windows.Forms.Label();
+            this.nParty = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -315,24 +315,6 @@
             this.label2.TabIndex = 79;
             this.label2.Text = "Разрушаюшающая нагрузка, кН";
             // 
-            // nParty
-            // 
-            this.nParty.BackColor = System.Drawing.SystemColors.Info;
-            this.nParty.Enabled = false;
-            this.nParty.Location = new System.Drawing.Point(288, 34);
-            this.nParty.Name = "nParty";
-            this.nParty.Size = new System.Drawing.Size(86, 20);
-            this.nParty.TabIndex = 82;
-            // 
-            // label_nParty
-            // 
-            this.label_nParty.AutoSize = true;
-            this.label_nParty.Location = new System.Drawing.Point(7, 37);
-            this.label_nParty.Name = "label_nParty";
-            this.label_nParty.Size = new System.Drawing.Size(79, 13);
-            this.label_nParty.TabIndex = 81;
-            this.label_nParty.Text = "Номер партии";
-            // 
             // day_night
             // 
             this.day_night.FormattingEnabled = true;
@@ -345,50 +327,15 @@
             this.day_night.TabIndex = 83;
             this.day_night.SelectedIndexChanged += new System.EventHandler(this.batchNumber_ValueChanged);
             // 
-            // label7
+            // humidity
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(7, 182);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(90, 13);
-            this.label7.TabIndex = 59;
-            this.label7.Text = "Прочность, МПа";
-            // 
-            // density_mpa
-            // 
-            this.density_mpa.BackColor = System.Drawing.SystemColors.Info;
-            this.density_mpa.Enabled = false;
-            this.density_mpa.Location = new System.Drawing.Point(288, 179);
-            this.density_mpa.Name = "density_mpa";
-            this.density_mpa.Size = new System.Drawing.Size(86, 20);
-            this.density_mpa.TabIndex = 66;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(7, 73);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(110, 13);
-            this.label9.TabIndex = 59;
-            this.label9.Text = "Марка по плотности";
-            // 
-            // densityGrade
-            // 
-            this.densityGrade.BackColor = System.Drawing.SystemColors.Info;
-            this.densityGrade.Enabled = false;
-            this.densityGrade.Location = new System.Drawing.Point(288, 70);
-            this.densityGrade.Name = "densityGrade";
-            this.densityGrade.Size = new System.Drawing.Size(86, 20);
-            this.densityGrade.TabIndex = 66;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(7, 110);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(108, 13);
-            this.label10.TabIndex = 59;
-            this.label10.Text = "Класс по прочности";
+            this.humidity.BackColor = System.Drawing.SystemColors.Info;
+            this.humidity.Enabled = false;
+            this.humidity.Location = new System.Drawing.Point(288, 144);
+            this.humidity.Name = "humidity";
+            this.humidity.Size = new System.Drawing.Size(86, 20);
+            this.humidity.TabIndex = 66;
+            this.humidity.Text = "=(Mwet-Mdry)/Mwet*100";
             // 
             // densityClass
             // 
@@ -399,6 +346,24 @@
             this.densityClass.Size = new System.Drawing.Size(86, 20);
             this.densityClass.TabIndex = 66;
             // 
+            // densityGrade
+            // 
+            this.densityGrade.BackColor = System.Drawing.SystemColors.Info;
+            this.densityGrade.Enabled = false;
+            this.densityGrade.Location = new System.Drawing.Point(288, 70);
+            this.densityGrade.Name = "densityGrade";
+            this.densityGrade.Size = new System.Drawing.Size(86, 20);
+            this.densityGrade.TabIndex = 66;
+            // 
+            // density_mpa
+            // 
+            this.density_mpa.BackColor = System.Drawing.SystemColors.Info;
+            this.density_mpa.Enabled = false;
+            this.density_mpa.Location = new System.Drawing.Point(288, 179);
+            this.density_mpa.Name = "density_mpa";
+            this.density_mpa.Size = new System.Drawing.Size(86, 20);
+            this.density_mpa.TabIndex = 66;
+            // 
             // label11
             // 
             this.label11.AutoSize = true;
@@ -408,15 +373,50 @@
             this.label11.TabIndex = 59;
             this.label11.Text = "Влажность";
             // 
-            // humidity
+            // label10
             // 
-            this.humidity.BackColor = System.Drawing.SystemColors.Info;
-            this.humidity.Enabled = false;
-            this.humidity.Location = new System.Drawing.Point(288, 144);
-            this.humidity.Name = "humidity";
-            this.humidity.Size = new System.Drawing.Size(86, 20);
-            this.humidity.TabIndex = 66;
-            this.humidity.Text = "=(Mwet-Mdry)/Mwet*100";
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(7, 110);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(108, 13);
+            this.label10.TabIndex = 59;
+            this.label10.Text = "Класс по прочности";
+            // 
+            // label_nParty
+            // 
+            this.label_nParty.AutoSize = true;
+            this.label_nParty.Location = new System.Drawing.Point(7, 37);
+            this.label_nParty.Name = "label_nParty";
+            this.label_nParty.Size = new System.Drawing.Size(79, 13);
+            this.label_nParty.TabIndex = 81;
+            this.label_nParty.Text = "Номер партии";
+            // 
+            // nParty
+            // 
+            this.nParty.BackColor = System.Drawing.SystemColors.Info;
+            this.nParty.Enabled = false;
+            this.nParty.Location = new System.Drawing.Point(288, 34);
+            this.nParty.Name = "nParty";
+            this.nParty.Size = new System.Drawing.Size(86, 20);
+            this.nParty.TabIndex = 82;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(7, 73);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(110, 13);
+            this.label9.TabIndex = 59;
+            this.label9.Text = "Марка по плотности";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(7, 182);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(90, 13);
+            this.label7.TabIndex = 59;
+            this.label7.Text = "Прочность, МПа";
             // 
             // groupBox2
             // 
@@ -436,6 +436,7 @@
             this.groupBox2.TabIndex = 84;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Автозаполнение";
+            this.groupBox2.Visible = false;
             // 
             // AddAeratedBlock
             // 
@@ -500,19 +501,19 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox BreakingLoad_kH;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox nParty;
-        private System.Windows.Forms.Label label_nParty;
         private System.Windows.Forms.TextBox sampleWetWeight_gram;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ComboBox day_night;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox density_mpa;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox densityGrade;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox densityClass;
-        private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox humidity;
+        private System.Windows.Forms.TextBox densityClass;
+        private System.Windows.Forms.TextBox densityGrade;
+        private System.Windows.Forms.TextBox density_mpa;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label_nParty;
+        private System.Windows.Forms.TextBox nParty;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.GroupBox groupBox2;
     }
 }

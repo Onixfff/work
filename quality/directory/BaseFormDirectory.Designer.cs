@@ -41,6 +41,7 @@ namespace quality.directory
             // menuStripDictionary
             // 
             this.menuStripDictionary.AllowMerge = false;
+            this.menuStripDictionary.GripStyle = System.Windows.Forms.ToolStripGripStyle.Visible;
             this.menuStripDictionary.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.добавитьToolStripMenuItem,
             this.изменитьToolStripMenuItem,

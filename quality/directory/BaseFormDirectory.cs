@@ -22,7 +22,7 @@ namespace quality.directory
             _table = table;
             _conn = conn;
             InitializeComponent();
-            this.Text = table;
+            this.AccessibleDefaultActionDescription = table;
             Database database = new Database(_conn, table, dataGridViewDirectory);
             NameColumns nameColumns = new NameColumns(dataGridViewDirectory, table);
             nameColumns.ChangesDisplayOfData();
@@ -56,24 +56,28 @@ namespace quality.directory
                     for (int i = 0; i < coin; i++)
                     {
                         dataChange.Add("richTextBoxComment", dataGridViewDirectory.SelectedRows[i].Cells[2].Value.ToString());
+                        this.Text = "Класс";
                     }
                     break;
                 case "group_material":
                     for (int i = 0; i < coin; i++)
                     {
                         dataChange.Add("richTextBoxComment", dataGridViewDirectory.SelectedRows[i].Cells[2].Value.ToString());
+                        this.Text = "Групповые метериалы";
                     }
                     break;
                 case "manufacturer":
                     for (int i = 0; i < coin; i++)
                     {
                         dataChange.Add("richTextBoxComment", dataGridViewDirectory.SelectedRows[i].Cells[2].Value.ToString());
+                        this.Text = "Производители";
                     }
                     break;
                 case "mark":
                     for (int i = 0; i < coin; i++)
                     {
                         dataChange.Add("richTextBoxComment", dataGridViewDirectory.SelectedRows[i].Cells[2].Value.ToString());
+                        this.Text = "Марка";
                     }
                     break;
                 case "material":
@@ -83,9 +87,11 @@ namespace quality.directory
                         dataChange.Add("_textBoxShifr", dataGridViewDirectory.SelectedRows[i].Cells[2].Value.ToString());
                         dataChange.Add("_textBoxMaterial", dataGridViewDirectory.SelectedRows[i].Cells[4].Value.ToString());
                         dataChange.Add("id_group", dataGridViewDirectory.SelectedRows[i].Cells[3].Value.ToString());
+                        this.Text = "Материал";
                     }
                     break;
                 case "units":
+                    this.Text = "Единицы измерения";
                     break;
                 default:
                     MessageBox.Show("Такую формы нету");
