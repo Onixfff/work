@@ -41,10 +41,8 @@ namespace quality.directory
 
         private void изменитьToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
             Dictionary<string, string> dataChange = new Dictionary<string, string>();
             int coin = dataGridViewDirectory.SelectedRows.Count;
-            List<string> nameElements = new List<string>() {"id","textBoxName", "richTextBoxComment", "", "richTextBoxComment" };
             for (int i = 0; i < coin; i++)
             {
                 dataChange.Add("id", dataGridViewDirectory.SelectedRows[i].Cells[0].Value.ToString());
@@ -97,7 +95,6 @@ namespace quality.directory
                     MessageBox.Show("Такую формы нету");
                     break;
             }
-
             ClassDirectory formAdd = new ClassDirectory(_table, _conn, dataChange);
             formAdd.ShowDialog();
         }

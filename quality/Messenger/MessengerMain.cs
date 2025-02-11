@@ -32,28 +32,48 @@ namespace quality.Messenger
 
         private void toolStripComboBox1_TextChanged(object sender, EventArgs e)
         {
-            switch (this.database_toolStripComboBox.Text)
-            {
-                case "Входящие":
-                    _typeMessage = 1;
-                    break;
-                case "Исходящие":
-                    _typeMessage = 2;
-                    break;
-                case "Внутренние":
-                    _typeMessage = 3;
-                    break;
-                default:
-                    MessageBox.Show("Такой базы не обнаружено");
-                    break;
-            }
-            ChangeDataInDataGrid(_typeMessage);
+            if(CheckSelectComboBox("Такой базы не обнаружено") != 0)
+                ChangeDataInDataGrid(_typeMessage);
         }
 
         private void ChangeDataInDataGrid(int _typeMessage)
         {
-            DatabaseMessanger db = new DatabaseMessanger(_conn, _table);
-            db.ChangeDataInDataGrid(dataGridViewMessanger, _typeMessage);
+            DatabaseMessenger db = new DatabaseMessenger(_conn, _table);
+            db.ChangeDataInDataGridView(dataGridViewMessanger, _typeMessage);
+        }
+
+        private void toolStripAdd_Click(object sender, EventArgs e)
+        {
+            if (CheckSelectComboBox("Выбирите базу для добавления данных") != 0)
+            {
+                BaseMessengerAdd form = new BaseMessengerAdd(_typeMessage, database_toolStripComboBox.Text, _conn, _table);
+                form.ShowDialog();
+            }
+        }
+
+        private int CheckSelectComboBox(string error)
+        {
+            switch (this.database_toolStripComboBox.Text)
+            {
+                case "Входящие":
+                    return _typeMessage = 1;
+                case "Исходящие":
+                    return _typeMessage = 2;
+                case "Внутренние":
+                    return _typeMessage = 3;
+                default:
+                    MessageBox.Show(error);
+                    return _typeMessage = 0;
+            }
+        }
+
+        private void toolStripUpdate_Click(object sender, EventArgs e)
+        {
+            var selectedRows = dataGridViewMessanger.SelectedRows.Count;
+            string id = dataGridViewMessanger.SelectedRows[0].Cells["№ Входящего"].Value.ToString();
+
+            BaseMessengerAdd form = new BaseMessengerAdd(_typeMessage, database_toolStripComboBox.Text, _conn, _table, id);
+            form.ShowDialog();
         }
     }
 }

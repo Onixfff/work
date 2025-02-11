@@ -84,28 +84,28 @@ namespace Aeroblock
 
         private void отчетСводныйToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //try
-            //{
-            //    IEnumerable<report.General> list = null;
-            //    list = MdiChildren.OfType<report.General>();
-            //    if (list != null && list.Count() > 0)
-            //    {
-            //        list.First().Activate();
-            //    }
-            //    else
-            //    {
-            //        report.General form = new report.General();
-            //        form.MdiParent = this;
-            //        form.Show();
-            //    }
-            //}
+            try
+            {
+                IEnumerable<report.General> list = null;
+                list = MdiChildren.OfType<report.General>();
+                if (list != null && list.Count() > 0)
+                {
+                    list.First().Activate();
+                }
+                else
+                {
+                    report.General form = new report.General();
+                    form.MdiParent = this;
+                    form.Show();
+                }
+            }
 
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show("Ошибка просмотра заявок", ex.Message);
-            //    //Logger.Message("Ошибка просмотра заявок", ex.Message);
-            //    //toolSSLState.Text = ex.Message;
-            //}
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка просмотра заявок", ex.Message);
+                //Logger.Message("Ошибка просмотра заявок", ex.Message);
+                //toolSSLState.Text = ex.Message;
+            }
         }
 
         private void входToolStripMenuItem_Click(object sender, EventArgs e)

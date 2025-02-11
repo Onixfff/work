@@ -33,8 +33,8 @@ namespace quality.Messenger
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.database_toolStripComboBox = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripAdd = new System.Windows.Forms.ToolStripButton();
+            this.toolStripUpdate = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMessanger)).BeginInit();
@@ -66,8 +66,8 @@ namespace quality.Messenger
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.database_toolStripComboBox,
             this.toolStripSeparator1,
-            this.toolStripButton1,
-            this.toolStripButton2,
+            this.toolStripAdd,
+            this.toolStripUpdate,
             this.toolStripSeparator2,
             this.toolStripDropDownButton1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
@@ -92,21 +92,23 @@ namespace quality.Messenger
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
-            // toolStripButton1
+            // toolStripAdd
             // 
-            this.toolStripButton1.Image = global::quality.Properties.Resources.application_add_12963;
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(79, 22);
-            this.toolStripButton1.Text = "Добавить";
+            this.toolStripAdd.Image = global::quality.Properties.Resources.application_add_12963;
+            this.toolStripAdd.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripAdd.Name = "toolStripAdd";
+            this.toolStripAdd.Size = new System.Drawing.Size(79, 22);
+            this.toolStripAdd.Text = "Добавить";
+            this.toolStripAdd.Click += new System.EventHandler(this.toolStripAdd_Click);
             // 
-            // toolStripButton2
+            // toolStripUpdate
             // 
-            this.toolStripButton2.Image = global::quality.Properties.Resources.application_edit_12962;
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(81, 22);
-            this.toolStripButton2.Text = "Изменить";
+            this.toolStripUpdate.Image = global::quality.Properties.Resources.application_edit_12962;
+            this.toolStripUpdate.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripUpdate.Name = "toolStripUpdate";
+            this.toolStripUpdate.Size = new System.Drawing.Size(81, 22);
+            this.toolStripUpdate.Text = "Изменить";
+            this.toolStripUpdate.Click += new System.EventHandler(this.toolStripUpdate_Click);
             // 
             // toolStripSeparator2
             // 
@@ -145,8 +147,8 @@ namespace quality.Messenger
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripComboBox database_toolStripComboBox;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripButton toolStripButton1;
-        private System.Windows.Forms.ToolStripButton toolStripButton2;
+        private System.Windows.Forms.ToolStripButton toolStripAdd;
+        private System.Windows.Forms.ToolStripButton toolStripUpdate;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton1;
     }

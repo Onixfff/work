@@ -32,7 +32,6 @@ namespace quality.directory
             this.menuStripDictionary = new System.Windows.Forms.MenuStrip();
             this.добавитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.изменитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.удалитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dataGridViewDirectory = new System.Windows.Forms.DataGridView();
             this.menuStripDictionary.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDirectory)).BeginInit();
@@ -44,8 +43,7 @@ namespace quality.directory
             this.menuStripDictionary.GripStyle = System.Windows.Forms.ToolStripGripStyle.Visible;
             this.menuStripDictionary.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.добавитьToolStripMenuItem,
-            this.изменитьToolStripMenuItem,
-            this.удалитьToolStripMenuItem});
+            this.изменитьToolStripMenuItem});
             this.menuStripDictionary.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
             this.menuStripDictionary.Location = new System.Drawing.Point(0, 0);
             this.menuStripDictionary.Name = "menuStripDictionary";
@@ -69,13 +67,6 @@ namespace quality.directory
             this.изменитьToolStripMenuItem.Size = new System.Drawing.Size(89, 20);
             this.изменитьToolStripMenuItem.Text = "Изменить";
             this.изменитьToolStripMenuItem.Click += new System.EventHandler(this.изменитьToolStripMenuItem_Click);
-            // 
-            // удалитьToolStripMenuItem
-            // 
-            this.удалитьToolStripMenuItem.Image = global::quality.Properties.Resources.application_remove_12959;
-            this.удалитьToolStripMenuItem.Name = "удалитьToolStripMenuItem";
-            this.удалитьToolStripMenuItem.Size = new System.Drawing.Size(79, 20);
-            this.удалитьToolStripMenuItem.Text = "Удалить";
             // 
             // dataGridViewDirectory
             // 
@@ -121,6 +112,5 @@ namespace quality.directory
         private System.Windows.Forms.ToolStripMenuItem добавитьToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem изменитьToolStripMenuItem;
         public System.Windows.Forms.DataGridView dataGridViewDirectory;
-        private System.Windows.Forms.ToolStripMenuItem удалитьToolStripMenuItem;
     }
 }

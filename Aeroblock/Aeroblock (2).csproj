@@ -8,24 +8,26 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>Aeroblock</RootNamespace>
     <AssemblyName>Aeroblock</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
     <TargetFrameworkProfile />
-    <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>C:\Users\PC-01\YandexDisk-fff-fff01\sss\Общезаводская программа\Общезаводская программа — копия — копия\Publich\</PublishUrl>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <PublishUrl>ftp://192.168.100.100/plant-wide/</PublishUrl>
     <Install>true</Install>
-    <InstallFrom>Disk</InstallFrom>
-    <UpdateEnabled>false</UpdateEnabled>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
     <UpdateMode>Foreground</UpdateMode>
     <UpdateInterval>7</UpdateInterval>
     <UpdateIntervalUnits>Days</UpdateIntervalUnits>
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>true</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
+    <InstallUrl>http://l192.168100.100/progi/plant-wide/</InstallUrl>
     <ProductName>plant-wide program</ProductName>
     <PublisherName>Concrete39</PublisherName>
     <MinimumRequiredVersion>2.0.0.1</MinimumRequiredVersion>
+    <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>plant-wide program.htm</WebPage>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>3.0.0.%2a</ApplicationVersion>
@@ -56,7 +58,7 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>35152B0ADD9068D370C9041A96CD0D3A1AD186F4</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>E13A6512C43A3B3383E7D054ACED770C4559C30E</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestKeyFile>Aeroblock_TemporaryKey.pfx</ManifestKeyFile>
@@ -65,14 +67,13 @@
     <GenerateManifests>true</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>
-    </AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>Aeroblock_TemporaryKey.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="BouncyCastle.Crypto, Version=1.8.5.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
@@ -250,7 +251,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Общезаводская программа — копия — копия\Aeroblock\report\report\report.csproj">
+    <ProjectReference Include="..\..\..\..\repos\report\report\report.csproj">
       <Project>{d77c0616-674f-40ce-8404-25abd5b90ab7}</Project>
       <Name>report</Name>
     </ProjectReference>
@@ -274,9 +275,6 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="report.sln" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

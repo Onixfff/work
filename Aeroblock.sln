@@ -1,15 +1,18 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29326.143
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35219.272
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aeroblock", "Aeroblock\Aeroblock.csproj", "{B30CB9DB-6D30-493C-A394-01A810F4D1DF}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D77C0616-674F-40CE-8404-25ABD5B90AB7} = {D77C0616-674F-40CE-8404-25ABD5B90AB7}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibrary", "ClassLibrary\ClassLibrary.csproj", "{6A8301CB-0AEF-4C5F-B40A-3FD46B5914AE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "report", "..\..\..\repos\report\report\report.csproj", "{D77C0616-674F-40CE-8404-25ABD5B90AB7}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "quality", "quality\quality.csproj", "{463BD912-6318-42FC-B482-FAFCF7B4917D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "report", "..\..\Общезаводская программа — копия — копия\Aeroblock\report\report\report.csproj", "{D77C0616-674F-40CE-8404-25ABD5B90AB7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,14 +28,14 @@ Global
 		{6A8301CB-0AEF-4C5F-B40A-3FD46B5914AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6A8301CB-0AEF-4C5F-B40A-3FD46B5914AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6A8301CB-0AEF-4C5F-B40A-3FD46B5914AE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D77C0616-674F-40CE-8404-25ABD5B90AB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D77C0616-674F-40CE-8404-25ABD5B90AB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D77C0616-674F-40CE-8404-25ABD5B90AB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D77C0616-674F-40CE-8404-25ABD5B90AB7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{463BD912-6318-42FC-B482-FAFCF7B4917D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{463BD912-6318-42FC-B482-FAFCF7B4917D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{463BD912-6318-42FC-B482-FAFCF7B4917D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{463BD912-6318-42FC-B482-FAFCF7B4917D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D77C0616-674F-40CE-8404-25ABD5B90AB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D77C0616-674F-40CE-8404-25ABD5B90AB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D77C0616-674F-40CE-8404-25ABD5B90AB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D77C0616-674F-40CE-8404-25ABD5B90AB7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

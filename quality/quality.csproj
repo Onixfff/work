@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>quality</RootNamespace>
     <AssemblyName>quality</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
@@ -59,14 +59,13 @@
     <GenerateManifests>true</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>
-    </AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>Aeroblock_TemporaryKey.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AdvancedDataGridView">
@@ -245,13 +244,33 @@
     <Compile Include="AddData\Laborant.Designer.cs">
       <DependentUpon>Laborant.cs</DependentUpon>
     </Compile>
-    <Compile Include="Messenger\DatabaseMessanger.cs" />
+    <Compile Include="Messenger\BaseMessengerAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Messenger\BaseMessengerAdd.Designer.cs">
+      <DependentUpon>BaseMessengerAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Messenger\AdditionalDatabases.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Messenger\AdditionalDatabases.Designer.cs">
+      <DependentUpon>AdditionalDatabases.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Messenger\DatabaseMessenger.cs" />
+    <Compile Include="Messenger\KeyFormSql.cs" />
     <Compile Include="Messenger\MessengerMain.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Messenger\MessengerMain.Designer.cs">
       <DependentUpon>MessengerMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="Messenger\PhotosMessenger.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Messenger\PhotosMessenger.Designer.cs">
+      <DependentUpon>PhotosMessenger.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Messenger\SqlFunction.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResultBlockBonus.cs">
@@ -319,8 +338,17 @@
     <EmbeddedResource Include="Directory\BaseFormDirectory.resx">
       <DependentUpon>BaseFormDirectory.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Messenger\BaseMessengerAdd.resx">
+      <DependentUpon>BaseMessengerAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Messenger\AdditionalDatabases.resx">
+      <DependentUpon>AdditionalDatabases.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Messenger\MessengerMain.resx">
       <DependentUpon>MessengerMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Messenger\PhotosMessenger.resx">
+      <DependentUpon>PhotosMessenger.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -332,6 +360,7 @@
     <EmbeddedResource Include="ResultBlocks.resx">
       <DependentUpon>ResultBlocks.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="Aeroblock_TemporaryKey.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -392,6 +421,11 @@
   <ItemGroup>
     <None Include="Resources\database_12929.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\business_deletethedatabase_exit_db_delete_busines_2346.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\database_add_12927.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
