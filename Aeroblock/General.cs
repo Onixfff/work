@@ -88,6 +88,7 @@ namespace Aeroblock
             {
                 IEnumerable<report.General> list = null;
                 list = MdiChildren.OfType<report.General>();
+
                 if (list != null && list.Count() > 0)
                 {
                     list.First().Activate();
