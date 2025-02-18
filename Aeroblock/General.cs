@@ -7,11 +7,18 @@ using System.Configuration;
 using quality;
 using quality.directory;
 using quality.Messenger;
+using System.Threading.Tasks;
+using ClassLibraryGetIp;
+using System.Text;
+using System.Text.RegularExpressions;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ToolTip;
 
 namespace Aeroblock
 {
     public partial class General : Form
     {
+        private Main _mainInstance = new Main();
+
         private MySqlConnection mCon;
 
         //string conn = "Database=u0550310_aeroblock2; Server=31.31.196.61; port=3306; username=u0550_guseva; password=irinka20112004; charset=utf8 ";
@@ -19,7 +26,7 @@ namespace Aeroblock
         private string conn = ConfigurationManager.ConnectionStrings["conn"].ConnectionString;
         private string conn2 = ConfigurationManager.ConnectionStrings["conn2"].ConnectionString;
         private string conn3 = ConfigurationManager.ConnectionStrings["conn3"].ConnectionString;
-        private string conn4 = ConfigurationManager.ConnectionStrings["conn4Local"].ConnectionString;
+        private string conn4 = ConfigurationManager.ConnectionStrings["conn4"].ConnectionString;
         //private string conn4 = ConfigurationManager.ConnectionStrings["conn4"].ConnectionString;
 
 
@@ -29,8 +36,85 @@ namespace Aeroblock
             InitializeComponent();
         }
 
-        private void General_Load(object sender, EventArgs e)
+        private async void General_Load(object sender, EventArgs e)
         {
+            (string updateConn2, string error2) = await ChangeMconAsync("noIdea",conn2); //conn2
+            (string updateConn4, string error4) = await ChangeMconAsync("server", conn4); //conn4 (не имею понятия зачем меняю )
+
+            if(error2 != null)
+            {
+                CloseOpenConn2Forms(true);
+            }
+            else
+            {
+                conn2 = updateConn2;
+                CloseOpenConn2Forms(false);
+            }
+
+            if(error4 != null)
+            {
+                CloseOpenConn4Forms(true);
+            }
+            else
+            {
+                conn4 = updateConn4;
+                CloseOpenConn4Forms(false);
+            }
+
+            mCon = new MySqlConnection(conn);
+        }
+
+        private void CloseOpenConn2Forms(bool isClose)
+        {
+            главнаяToolStripMenuItem.Enabled = isClose;
+        }
+
+        private void CloseOpenConn4Forms(bool isClose)
+        {
+            входToolStripMenuItem.Enabled = isClose;
+            цементToolStripMenuItem.Enabled = isClose;
+            шламToolStripMenuItem.Enabled= isClose;
+            определениеАктивностиToolStripMenuItem.Enabled= isClose;
+            гипсToolStripMenuItem.Enabled= isClose;
+            журналТехнологическийToolStripMenuItem.Enabled = isClose;
+            определениеВремениГашенияToolStripMenuItem.Enabled = isClose;
+            испытаниеГПToolStripMenuItem.Enabled= isClose;
+            незнаюКакНазватьИГдеСтоятьToolStripMenuItem.Enabled= isClose;
+            групповыеМатериалыToolStripMenuItem7.Enabled= isClose;
+            производителиToolStripMenuItem8.Enabled= isClose;
+            маркиToolStripMenuItem9.Enabled= isClose;
+            единицыИзмеренияToolStripMenuItem.Enabled = isClose;
+            МатериалыыToolStripMenuItem.Enabled= isClose;
+            MessangerToolStripMenuItem.Enabled= isClose;
+        }
+
+        private async Task<(string updateConnection, string error)> ChangeMconAsync(string nameIp, string _connectionString)
+        {
+            var ip = await _mainInstance.GetIp(nameIp);
+            string error;
+
+            try
+            {
+                if (ip.GetIp() != null)
+                {
+                    string updatedConnectionString = Regex.Replace(_connectionString, @"(?i)server=[^;]+", $"Server={ip.GetIp()}", RegexOptions.IgnoreCase);
+                    return (updatedConnectionString, null);
+                }
+            }
+            catch (InvalidOperationException)
+            {
+                error = "Не получилось соеденится с сервером. Попробуйте позже...";
+                MessageBox.Show(error);
+                return (null, error);
+            }
+            catch (Exception)
+            {
+                error = "Непредвиденная ошибка. Повторите попытку позже или свяжитесь с администратором";
+                MessageBox.Show(error);
+                return (null, error);
+            }
+
+            return (null, "Неизвестная ошибка.");
         }
 
         private void возвратныеПаллетыToolStripMenuItem_Click(object sender, EventArgs e)
