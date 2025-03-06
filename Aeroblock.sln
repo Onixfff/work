@@ -14,6 +14,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "quality", "quality\quality.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "report", "..\..\Общезаводская программа — копия — копия\Aeroblock\report\report\report.csproj", "{D77C0616-674F-40CE-8404-25ABD5B90AB7}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Library", "Library", "{58AA0FE6-E931-4CC1-A7F6-317329E222AD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibraryGetIp", "Library\ClassLibraryGetIp\ClassLibraryGetIp\ClassLibraryGetIp.csproj", "{EF7FE000-5485-4384-9D25-1CF40ECD5E9B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,9 +40,16 @@ Global
 		{D77C0616-674F-40CE-8404-25ABD5B90AB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D77C0616-674F-40CE-8404-25ABD5B90AB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D77C0616-674F-40CE-8404-25ABD5B90AB7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF7FE000-5485-4384-9D25-1CF40ECD5E9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF7FE000-5485-4384-9D25-1CF40ECD5E9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF7FE000-5485-4384-9D25-1CF40ECD5E9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF7FE000-5485-4384-9D25-1CF40ECD5E9B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{EF7FE000-5485-4384-9D25-1CF40ECD5E9B} = {58AA0FE6-E931-4CC1-A7F6-317329E222AD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {293917EB-68ED-475A-84CA-195B2F516C89}
